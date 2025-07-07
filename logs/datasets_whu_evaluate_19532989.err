@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "evaluate_stereo.py", line 11, in <module>
+    from monster import Monster, autocast
+  File "/misc/home6/s0214/MonSter/core/monster.py", line 4, in <module>
+    from core.update import BasicMultiUpdateBlock, BasicMultiUpdateBlock_mix2
+  File "/misc/home6/s0214/MonSter/core/update.py", line 4, in <module>
+    from opt_einsum import contract
+ModuleNotFoundError: No module named 'opt_einsum'

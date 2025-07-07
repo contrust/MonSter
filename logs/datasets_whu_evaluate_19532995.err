@@ -1,0 +1,14 @@
+xFormers not available
+xFormers not available
+Traceback (most recent call last):
+  File "evaluate_stereo.py", line 463, in <module>
+    model = torch.nn.DataParallel(Monster(args), device_ids=[0])
+  File "/misc/home6/s0214/MonSter/core/monster.py", line 294, in __init__
+    state_dict_dpt = torch.load(f'./pretrained/depth_anything_v2_{args.encoder}.pth', map_location='cpu')
+  File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/torch/serialization.py", line 986, in load
+    with _open_file_like(f, 'rb') as opened_file:
+  File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/torch/serialization.py", line 435, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/torch/serialization.py", line 416, in __init__
+    super().__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: './pretrained/depth_anything_v2_vitl.pth'

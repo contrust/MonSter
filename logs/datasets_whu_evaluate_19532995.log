@@ -1,0 +1,2 @@
+DepthAnythingV2 out_channels [256, 512, 1024, 1024]
+DepthAnythingV2_decoder out_channels [256, 512, 1024, 1024]

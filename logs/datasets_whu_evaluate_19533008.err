@@ -1,0 +1,8 @@
+xFormers not available
+xFormers not available
+2025-07-06 17:46:37,768 INFO     [evaluate_stereo.py:476] Loading checkpoint...
+2025-07-06 17:46:37,768 INFO     [evaluate_stereo.py:477] ./checkpoints/mix_all.pth
+Traceback (most recent call last):
+  File "evaluate_stereo.py", line 478, in <module>
+    assert os.path.exists(args.restore_ckpt)
+AssertionError

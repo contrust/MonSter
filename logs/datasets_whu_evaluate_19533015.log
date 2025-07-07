@@ -1,0 +1,6 @@
+DepthAnythingV2 out_channels [256, 512, 1024, 1024]
+DepthAnythingV2_decoder out_channels [256, 512, 1024, 1024]
+Total number of parameters: 388.69M
+Total number of trainable parameters: 53.38M
+The model has 53.38M learnable parameters.
+Validation WHU: EPE 29.03760088467207, D1 86.25145960520254, 0.83-FPS (1.206s)

@@ -10,6 +10,12 @@ data/
 models/
 datasets/
 
+# Sensitive files
+credentials.json
+token.pickle
+*.json.bak
+*.pickle.bak
+
 ### Python ###
 # Byte-compiled / optimized / DLL files
 __pycache__/

@@ -253,20 +253,20 @@ class TartanAir(StereoDataset):
             self.disparity_list += [ disp ]
 
 class KITTI(StereoDataset):
-    def __init__(self, aug_params=None, root='/data2/cjd/StereoDatasets/kitti/2015', image_set='training'):
+    def __init__(self, aug_params=None, root='datasets/kitti', image_set='training'):
         super(KITTI, self).__init__(aug_params, sparse=True, reader=frame_utils.readDispKITTI)
         assert os.path.exists(root)
 
-        root_12 = '/data2/cjd/StereoDatasets/kitti/2012/'
+        root_12 = 'datasets/kitti/2012/'
         image1_list = sorted(glob(os.path.join(root_12, image_set, 'colored_0/*_10.png')))
         image2_list = sorted(glob(os.path.join(root_12, image_set, 'colored_1/*_10.png')))
         disp_list = sorted(glob(os.path.join(root_12, 'training', 'disp_occ/*_10.png'))) if image_set == 'training' else [osp.join(root, 'training/disp_occ/000085_10.png')]*len(image1_list)
-
-        root_15 = '/data2/cjd/StereoDatasets/kitti/2015/'
+        '''
+        root_15 = 'datasets/kitti/2015/'
         image1_list += sorted(glob(os.path.join(root_15, image_set, 'image_2/*_10.png')))
         image2_list += sorted(glob(os.path.join(root_15, image_set, 'image_3/*_10.png')))
         disp_list += sorted(glob(os.path.join(root_15, 'training', 'disp_occ_0/*_10.png'))) if image_set == 'training' else [osp.join(root, 'training/disp_occ_0/000085_10.png')]*len(image1_list)
-
+        '''
         for idx, (img1, img2, disp) in enumerate(zip(image1_list, image2_list, disp_list)):
             self.image_list += [ [img1, img2] ]
             self.disparity_list += [ disp ]
@@ -391,6 +391,35 @@ class DrivingStereo(StereoDataset):
             self.image_list += [ [img1, img2] ]
             self.disparity_list += [ disp ]
 
+
+class WHU(StereoDataset):
+    def __init__(self, aug_params=None, root='datasets/whu', image_set='training'):
+        super(WHU, self).__init__(aug_params, sparse=True, reader=frame_utils.read_gen)
+        assert os.path.exists(root)
+        
+        if image_set == 'training':
+            image1_list = sorted(glob(os.path.join(root, 'with ground truth/train/left/*.tiff')))
+            image2_list = sorted(glob(os.path.join(root, 'with ground truth/train/right/*.tiff')))
+            disp_list = sorted(glob(os.path.join(root, 'with ground truth/train/disp/*.tiff')))
+        elif image_set == 'validation':
+            image1_list = sorted(glob(os.path.join(root, 'with ground truth/val/left/*.tiff')))
+            image2_list = sorted(glob(os.path.join(root, 'with ground truth/val/right/*.tiff')))
+            disp_list = sorted(glob(os.path.join(root, 'with ground truth/val/disp/*.tiff')))
+        elif image_set == 'testing':
+            image1_list = sorted(glob(os.path.join(root, 'with ground truth/test/left/*.tiff')))
+            image2_list = sorted(glob(os.path.join(root, 'with ground truth/test/right/*.tiff')))
+            disp_list = sorted(glob(os.path.join(root, 'with ground truth/test/disp/*.tiff')))
+        else:
+            image1_list = sorted(glob(os.path.join(root, 'without ground truth/left/*.tiff')))
+            image2_list = sorted(glob(os.path.join(root, 'without ground truth/right/*.tiff')))
+            disp_list = [osp.join(root, 'with ground truth/train/disp/YD_disparity_147.tiff')] * len(image1_list)  # placeholder for testing
+
+        assert len(image1_list) == len(image2_list) == len(disp_list)
+
+        for idx, (img1, img2, disp) in enumerate(zip(image1_list, image2_list, disp_list)):
+            self.image_list += [ [img1, img2] ]
+            self.disparity_list += [ disp ]
+
   
 def fetch_dataloader(args):
     """ Create the data loader for the corresponding trainign set """
@@ -413,6 +442,9 @@ def fetch_dataloader(args):
         elif dataset_name == 'kitti':
             new_dataset = KITTI(aug_params)
             logging.info(f"Adding {len(new_dataset)} samples from KITTI")
+        elif dataset_name == 'whu':
+            new_dataset = WHU(aug_params)
+            logging.info(f"Adding {len(new_dataset)} samples from WHU Stereo")
         elif dataset_name == 'sintel_stereo':
             new_dataset = SintelStereo(aug_params)*140
             logging.info(f"Adding {len(new_dataset)} samples from Sintel Stereo")

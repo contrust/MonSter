@@ -2,19 +2,20 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,pythonvanilla,visualstudiocode,ssh,vim
 
 
-.checkpoints/
-.pretrained/
-.results/
-.logs/
-.data/
-.models/
-.datasets/
+checkpoints/
+pretrained/
+results/
+logs/
+data/
+models/
+datasets/
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
+*.pyc
 
 # C extensions
 *.so

@@ -4,7 +4,7 @@ restore_ckpt: "./checkpoints/mix_all.pth"
 # restore_ckpt: "/data2/cjd/mono_fusion/checkpoints/sceneflow.pth"
 logdir: './checkpoints/whu/'
 encoder: 'vitl'
-batch_size: 12
+batch_size: 8
 train_datasets: ['whu']
 lr: 1e-4
 wdecay: 1e-5
@@ -12,7 +12,7 @@ total_step: 50000
 save_frequency: 2000
 save_path: ./checkpoints/whu/
 val_frequency: 2000
-image_size: [320, 736]
+image_size: [1024, 1024]
 train_iters: 22
 valid_iters: 32
 val_dataset: 'whu'
@@ -22,10 +22,10 @@ corr_radius: 4
 n_downsample: 2
 n_gru_layers: 3
 hidden_dims: [128, 128, 128]
-max_disp: 192
+max_disp: 375
 saturation_range: [0.7, 1.3]
 do_flip: False
 spatial_scale: [-0.2, 0.5]
 noyjitter: True
 num_gpu: 4
-seed: 655 
+seed: 666

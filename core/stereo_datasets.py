@@ -394,7 +394,7 @@ class DrivingStereo(StereoDataset):
 
 class WHU(StereoDataset):
     def __init__(self, aug_params=None, root='datasets/whu', image_set='training'):
-        super(WHU, self).__init__(aug_params, sparse=True, reader=frame_utils.read_gen)
+        super(WHU, self).__init__(aug_params, sparse=True, reader=frame_utils.readDispWHU)
         assert os.path.exists(root)
         
         if image_set == 'training':
@@ -410,12 +410,12 @@ class WHU(StereoDataset):
             image2_list = sorted(glob(os.path.join(root, 'with ground truth/test/right/*.tiff')))
             disp_list = sorted(glob(os.path.join(root, 'with ground truth/test/disp/*.tiff')))
         else:
-            image1_list = sorted(glob(os.path.join(root, 'without ground truth/left/*.tiff')))
-            image2_list = sorted(glob(os.path.join(root, 'without ground truth/right/*.tiff')))
-            disp_list = [osp.join(root, 'with ground truth/train/disp/YD_disparity_147.tiff')] * len(image1_list)  # placeholder for testing
-
-        assert len(image1_list) == len(image2_list) == len(disp_list)
-
+            raise ValueError(f"Invalid WHU Stereo image set: {image_set}")
+        
+        assert len(image1_list) == len(image2_list) == len(disp_list),\
+            f"Mismatch in dataset sizes: {len(image1_list)} left, " \
+            f"{len(image2_list)} right, {len(disp_list)} disp"
+        
         for idx, (img1, img2, disp) in enumerate(zip(image1_list, image2_list, disp_list)):
             self.image_list += [ [img1, img2] ]
             self.disparity_list += [ disp ]
@@ -443,7 +443,7 @@ def fetch_dataloader(args):
             new_dataset = KITTI(aug_params)
             logging.info(f"Adding {len(new_dataset)} samples from KITTI")
         elif dataset_name == 'whu':
-            new_dataset = WHU(aug_params)
+            new_dataset = WHU(aug_params, image_set='training')
             logging.info(f"Adding {len(new_dataset)} samples from WHU Stereo")
         elif dataset_name == 'sintel_stereo':
             new_dataset = SintelStereo(aug_params)*140

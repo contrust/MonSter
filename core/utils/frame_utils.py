@@ -9,6 +9,7 @@ cv2.setNumThreads(0)
 cv2.ocl.setUseOpenCL(False)
 
 TAG_CHAR = np.array([202021.25], np.float32)
+WHU_INVALID_DISPARITY_VALUE = -999
 
 def readFlow(fn):
     """ Read .flo file in Middlebury format"""
@@ -199,6 +200,10 @@ def readDispTartanAir(file_name):
     valid = disp > 0
     return disp, valid
 
+def readDispWHU(filename):
+    disp = np.array(Image.open(filename)).astype(np.float32)
+    valid = disp != WHU_INVALID_DISPARITY_VALUE
+    return disp, valid
 
 def readDispMiddlebury(file_name):
     ext = splitext(file_name)[-1]
@@ -236,7 +241,11 @@ def read_gen(file_name, pil=False):
     elif ext == '.bin' or ext == '.raw':
         return np.load(file_name)
     elif ext == '.flo':
-        return readFlow(file_name).astype(np.float32)
+        flow = readFlow(file_name)
+        if flow is not None:
+            return flow.astype(np.float32)
+        else:
+            return None
     elif ext == '.pfm':
         flow = readPFM(file_name).astype(np.float32)
         if len(flow.shape) == 2:

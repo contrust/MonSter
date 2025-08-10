@@ -339,11 +339,15 @@ def validate_driving(model, iters=32, mixed_prec=False):
 def validate_whu(model, iters=32, mixed_prec=False):
     """ Perform validation using the WHU stereo dataset """
     model.eval()
-    aug_params = {}
+    aug_params = {'crop_size': list([320, 736])}
     val_dataset = datasets.WHU(aug_params, image_set='validation')
     torch.backends.cudnn.benchmark = True
 
-    out_list, epe_list, elapsed_list = [], [], []
+    if len(val_dataset) == 0:
+        return {'whu-epe': 0.0, 'whu-d1': 0.0}
+
+    out_list, epe_list = [], []
+    
     for val_id in range(len(val_dataset)):
         _, image1, image2, disp_gt, valid_gt = val_dataset[val_id]
         image1 = image1[None].cuda()
@@ -352,43 +356,32 @@ def validate_whu(model, iters=32, mixed_prec=False):
         padder = InputPadder(image1.shape, divis_by=32)
         image1, image2 = padder.pad(image1, image2)
 
-        with torch.no_grad():
-            with autocast(enabled=mixed_prec):
-                start = time.time()
-                disp_pr = model(image1, image2, iters=iters, test_mode=True)
-                end = time.time()
-
-        if val_id > 50:
-            elapsed_list.append(end-start)
+        disp_pr = model(image1, image2, iters=iters, test_mode=True)
         disp_pr = padder.unpad(disp_pr).cpu().squeeze(0)
-
-        assert disp_pr.shape == disp_gt.shape, (disp_pr.shape, disp_gt.shape)
+        
         epe = torch.abs(disp_pr - disp_gt)
-
         epe_flattened = epe.flatten()
         val = (valid_gt.flatten() >= 0.5) & (disp_gt.abs().flatten() < 192)
+        
+        if val.sum() > 0:
+            out = (epe_flattened > 1.0)
+            epe_list.append(epe_flattened[val].mean().item())
+            out_list.append(out[val].cpu().numpy())
 
-        out = (epe_flattened > 1.0)
-        image_out = out[val].float().mean().item()
-        image_epe = epe_flattened[val].mean().item()
-        if val_id < 9 or (val_id+1)%10 == 0:
-            logging.info(f"WHU Iter {val_id+1} out of {len(val_dataset)}. EPE {round(image_epe,4)} D1 {round(image_out,4)}. Runtime: {format(end-start, '.3f')}s ({format(1/(end-start), '.2f')}-FPS)")
-        epe_list.append(epe_flattened[val].mean().item())
-        out_list.append(out[val].cpu().numpy())
-
-    epe_list = np.array(epe_list)
-    out_list = np.concatenate(out_list)
+    if len(epe_list) == 0:
+        return {'whu-epe': float('inf'), 'whu-d1': 100.0}
 
     epe = np.mean(epe_list)
-    d1 = 100 * np.mean(out_list)
+    d1 = 100 * np.mean(np.concatenate(out_list))
 
-    if len(elapsed_list) > 0:
-        avg_runtime = np.mean(elapsed_list)
-        print(f"Validation WHU: EPE {epe}, D1 {d1}, {format(1/avg_runtime, '.2f')}-FPS ({format(avg_runtime, '.3f')}s)")
-    else:
-        print(f"Validation WHU: EPE {epe}, D1 {d1}")
-    
-    return {'whu-epe': epe, 'whu-d1': d1}
+    metrics = {
+        'whu-epe': epe,
+        'whu-d1': d1,
+        'whu-epe-list': epe_list,
+        'whu-d1-list': out_list
+    }
+    print(metrics)
+    return metrics
 
 
 @torch.no_grad()

@@ -1,0 +1,28 @@
+xFormers not available
+xFormers not available
+2025-07-07 22:55:57,500 INFO     [evaluate_stereo.py:504] Loading checkpoint...
+2025-07-07 22:55:57,500 INFO     [evaluate_stereo.py:505] ./checkpoints/mix_all.pth
+2025-07-07 22:55:58,579 INFO     [evaluate_stereo.py:520] Done loading checkpoint
+/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/torch/nn/functional.py:4296: UserWarning: Default grid_sample and affine_grid behavior has changed to align_corners=False since 1.3.0. Please specify align_corners=True if the old behavior is desired. See the documentation of grid_sample for details.
+  warnings.warn(
+2025-07-07 22:56:06,916 INFO     [evaluate_stereo.py:391] WHU Iter 1/122. EPE 12.826 D1 1.0 Valid pixels: 501746. Runtime: 8.219s (0.12-FPS)
+2025-07-07 22:56:08,200 INFO     [evaluate_stereo.py:391] WHU Iter 2/122. EPE 20.6998 D1 1.0 Valid pixels: 555814. Runtime: 1.191s (0.84-FPS)
+2025-07-07 22:56:09,467 INFO     [evaluate_stereo.py:391] WHU Iter 3/122. EPE 16.1043 D1 0.9998 Valid pixels: 566696. Runtime: 1.188s (0.84-FPS)
+2025-07-07 22:56:10,734 INFO     [evaluate_stereo.py:391] WHU Iter 4/122. EPE 13.0616 D1 1.0 Valid pixels: 397188. Runtime: 1.187s (0.84-FPS)
+2025-07-07 22:56:11,995 INFO     [evaluate_stereo.py:391] WHU Iter 5/122. EPE 22.7279 D1 1.0 Valid pixels: 406790. Runtime: 1.181s (0.85-FPS)
+2025-07-07 22:56:13,254 INFO     [evaluate_stereo.py:391] WHU Iter 6/122. EPE 10.0985 D1 1.0 Valid pixels: 462041. Runtime: 1.180s (0.85-FPS)
+2025-07-07 22:56:14,520 INFO     [evaluate_stereo.py:391] WHU Iter 7/122. EPE 23.9075 D1 1.0 Valid pixels: 284689. Runtime: 1.180s (0.85-FPS)
+2025-07-07 22:56:16,153 INFO     [evaluate_stereo.py:391] WHU Iter 8/122. EPE 26.7405 D1 1.0 Valid pixels: 438875. Runtime: 1.374s (0.73-FPS)
+2025-07-07 22:56:17,523 INFO     [evaluate_stereo.py:391] WHU Iter 9/122. EPE 13.7282 D1 1.0 Valid pixels: 422744. Runtime: 1.248s (0.80-FPS)
+2025-07-07 22:56:18,792 INFO     [evaluate_stereo.py:391] WHU Iter 10/122. EPE 28.2437 D1 1.0 Valid pixels: 212898. Runtime: 1.188s (0.84-FPS)
+2025-07-07 22:56:31,579 INFO     [evaluate_stereo.py:391] WHU Iter 20/122. EPE 67.6214 D1 0.9989 Valid pixels: 607097. Runtime: 1.197s (0.84-FPS)
+2025-07-07 22:56:44,338 INFO     [evaluate_stereo.py:391] WHU Iter 30/122. EPE 22.5361 D1 1.0 Valid pixels: 384081. Runtime: 1.198s (0.83-FPS)
+2025-07-07 22:56:57,117 INFO     [evaluate_stereo.py:391] WHU Iter 40/122. EPE 19.6486 D1 1.0 Valid pixels: 374793. Runtime: 1.200s (0.83-FPS)
+2025-07-07 22:57:10,985 INFO     [evaluate_stereo.py:391] WHU Iter 50/122. EPE 10.7981 D1 1.0 Valid pixels: 508881. Runtime: 1.193s (0.84-FPS)
+2025-07-07 22:57:24,401 INFO     [evaluate_stereo.py:391] WHU Iter 60/122. EPE 32.4757 D1 1.0 Valid pixels: 213271. Runtime: 1.194s (0.84-FPS)
+2025-07-07 22:57:38,212 INFO     [evaluate_stereo.py:391] WHU Iter 70/122. EPE 35.5089 D1 1.0 Valid pixels: 128012. Runtime: 1.197s (0.84-FPS)
+2025-07-07 22:57:50,994 INFO     [evaluate_stereo.py:391] WHU Iter 80/122. EPE 12.6907 D1 1.0 Valid pixels: 402872. Runtime: 1.194s (0.84-FPS)
+2025-07-07 22:58:03,757 INFO     [evaluate_stereo.py:391] WHU Iter 90/122. EPE 34.3633 D1 0.9999 Valid pixels: 488455. Runtime: 1.197s (0.84-FPS)
+2025-07-07 22:58:16,535 INFO     [evaluate_stereo.py:391] WHU Iter 100/122. EPE 7.5282 D1 0.9997 Valid pixels: 712157. Runtime: 1.198s (0.83-FPS)
+2025-07-07 22:58:29,298 INFO     [evaluate_stereo.py:391] WHU Iter 110/122. EPE 27.7419 D1 0.9978 Valid pixels: 637826. Runtime: 1.197s (0.84-FPS)
+2025-07-07 22:58:42,132 INFO     [evaluate_stereo.py:391] WHU Iter 120/122. EPE 53.0297 D1 1.0 Valid pixels: 513917. Runtime: 1.198s (0.83-FPS)

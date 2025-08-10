@@ -1,0 +1,13 @@
+DepthAnythingV2 out_channels [256, 512, 1024, 1024]
+DepthAnythingV2_decoder out_channels [256, 512, 1024, 1024]
+Total number of parameters: 388.69M
+Total number of trainable parameters: 53.38M
+The model has 53.38M learnable parameters.
+Starting WHU validation with 122 samples...
+WHU Validation Results:
+  - Total samples: 122
+  - Valid samples: 122
+  - Total valid pixels: 54740954
+  - Average EPE: 23.0549
+  - D1 error: 99.79%
+  - Average runtime: 1.211s (0.83-FPS)

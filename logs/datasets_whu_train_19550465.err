@@ -1,0 +1,2 @@
+usage: accelerate <command> [<args>]
+Accelerate CLI tool: error: unrecognized arguments: --num_processes_per_machine=4

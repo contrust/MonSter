@@ -13,7 +13,7 @@
 <div align="center">
 
 </div>
-MonSter: Marry Monodepth to Stereo Unleashes Power. <a href="https://arxiv.org/abs/2501.08643"><img src="https://img.shields.io/badge/arXiv-2402.11095-b31b1b?logo=arxiv" alt='arxiv'></a>  <a href='https://openbayes.com/console/public/tutorials/IHQPgJwkqUh'><img src='https://img.shields.io/badge/Demo-OpenBayes贝式计算-blue'></a>
+MonSter: Marry Monodepth to Stereo Unleashes Power. <a href="https://arxiv.org/abs/2501.08643"><img src="https://img.shields.io/badge/arXiv-2501.08643-b31b1b?logo=arxiv" alt='arxiv'></a>  <a href='https://openbayes.com/console/public/tutorials/IHQPgJwkqUh'><img src='https://img.shields.io/badge/Demo-OpenBayes贝式计算-blue'></a>
 
 Junda Cheng, Longliang Liu, Gangwei Xu, Xianqi Wang, Zhaoxing Zhang, Yong Deng, Jinliang Zang, Yurui Chen, Zhipeng Cai, Xin Yang<br/>
 

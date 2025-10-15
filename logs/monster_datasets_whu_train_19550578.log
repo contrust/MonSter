@@ -1,0 +1,13 @@
+[2025-08-10 21:58:44,325][accelerate.utils.other][WARNING] - Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
+train_datasets ['whu']
+train_datasets ['whu']
+[2025-08-10 21:58:44,522][root][INFO] - Adding 1220 samples from WHU Stereo
+[2025-08-10 21:58:44,522][root][INFO] - Adding 1220 samples from WHU Stereo
+train_datasets ['whu']
+[2025-08-10 21:58:44,623][root][INFO] - Adding 1220 samples from WHU Stereo
+[2025-08-10 21:58:44,654][dinov2][INFO] - using MLP layer as FFN
+[2025-08-10 21:58:44,655][dinov2][INFO] - using MLP layer as FFN
+[2025-08-10 21:58:44,755][dinov2][INFO] - using MLP layer as FFN
+[1;34mwandb[0m: 
+[1;34mwandb[0m: 🚀 View run [33m[0m at: [34m[0m
+[1;34mwandb[0m: Find logs at: [1;35mwandb/run-20250810_215845-03gzokvt/logs[0m

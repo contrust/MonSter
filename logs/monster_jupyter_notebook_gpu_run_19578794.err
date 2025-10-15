@@ -1,0 +1,47 @@
+Both `sys_prefix` and `user` level settings are read-only, cannot auto-migrate `disabledExtensions` to `lockedExtensions`
+[I 2025-09-25 03:27:18.842 ServerApp] jupyter_lsp | extension was successfully linked.
+[I 2025-09-25 03:27:18.847 ServerApp] jupyter_server_terminals | extension was successfully linked.
+[I 2025-09-25 03:27:18.852 ServerApp] jupyterlab | extension was successfully linked.
+[I 2025-09-25 03:27:18.857 ServerApp] notebook | extension was successfully linked.
+[I 2025-09-25 03:27:19.266 ServerApp] notebook_shim | extension was successfully linked.
+[I 2025-09-25 03:27:19.325 ServerApp] notebook_shim | extension was successfully loaded.
+[I 2025-09-25 03:27:19.327 ServerApp] jupyter_lsp | extension was successfully loaded.
+[I 2025-09-25 03:27:19.328 ServerApp] jupyter_server_terminals | extension was successfully loaded.
+[I 2025-09-25 03:27:19.335 LabApp] JupyterLab extension loaded from /home/s0214/.conda/envs/monster/lib/python3.8/site-packages/jupyterlab
+[I 2025-09-25 03:27:19.335 LabApp] JupyterLab application directory is /misc/home4/s0214/.conda/envs/monster/share/jupyter/lab
+[I 2025-09-25 03:27:19.336 LabApp] Extension Manager is 'pypi'.
+[I 2025-09-25 03:27:19.417 ServerApp] jupyterlab | extension was successfully loaded.
+[I 2025-09-25 03:27:19.424 ServerApp] notebook | extension was successfully loaded.
+[I 2025-09-25 03:27:19.424 ServerApp] The port 8888 is already in use, trying another port.
+[I 2025-09-25 03:27:19.424 ServerApp] Serving notebooks from local directory: /misc/home6/s0214/MonSter
+[I 2025-09-25 03:27:19.424 ServerApp] Jupyter Server 2.14.2 is running at:
+[I 2025-09-25 03:27:19.424 ServerApp] http://tesla-v100:8889/tree?token=b6a2032038a7464b741cc9085d99ad84c7efb9c369a1615d
+[I 2025-09-25 03:27:19.424 ServerApp]     http://127.0.0.1:8889/tree?token=b6a2032038a7464b741cc9085d99ad84c7efb9c369a1615d
+[I 2025-09-25 03:27:19.424 ServerApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[C 2025-09-25 03:27:19.439 ServerApp] 
+    
+    To access the server, open this file in a browser:
+        file:///misc/home4/s0214/.local/share/jupyter/runtime/jpserver-1908012-open.html
+    Or copy and paste one of these URLs:
+        http://tesla-v100:8889/tree?token=b6a2032038a7464b741cc9085d99ad84c7efb9c369a1615d
+        http://127.0.0.1:8889/tree?token=b6a2032038a7464b741cc9085d99ad84c7efb9c369a1615d
+[I 2025-09-25 03:27:19.474 ServerApp] Skipped non-installed server(s): basedpyright, bash-language-server, dockerfile-language-server-nodejs, javascript-typescript-langserver, jedi-language-server, julia-language-server, pyrefly, pyright, python-language-server, python-lsp-server, r-languageserver, sql-language-server, texlab, typescript-language-server, unified-language-server, vscode-css-languageserver-bin, vscode-html-languageserver-bin, vscode-json-languageserver-bin, yaml-language-server
+[I 2025-09-25 03:28:58.639 ServerApp] 302 GET / (@172.16.33.3) 0.59ms
+[I 2025-09-25 03:28:58.642 JupyterNotebookApp] 302 GET /tree? (@172.16.33.3) 0.66ms
+[I 2025-09-25 03:29:03.214 ServerApp] 302 GET / (@172.16.33.3) 0.51ms
+[I 2025-09-25 03:29:03.220 JupyterNotebookApp] 302 GET /tree? (@172.16.33.3) 0.47ms
+[I 2025-09-25 03:29:07.701 ServerApp] 302 GET / (@172.16.33.3) 0.33ms
+[I 2025-09-25 03:29:07.705 JupyterNotebookApp] 302 GET /tree? (@172.16.33.3) 0.48ms
+[I 2025-09-25 03:29:07.796 ServerApp] Kernel started: 9530bce4-b219-4c0d-a645-6ad77fd69b34
+[IPKernelApp] ERROR | Failed to create history session in /misc/home4/s0214/.ipython/profile_default/history.sqlite. History will not be saved.
+Traceback (most recent call last):
+  File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/IPython/core/history.py", line 543, in __init__
+    self.new_session()
+  File "<decorator-gen-15>", line 2, in new_session
+  File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/IPython/core/history.py", line 58, in needs_sqlite
+    return f(self, *a, **kw)
+  File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/IPython/core/history.py", line 568, in new_session
+    cur = conn.execute("""INSERT INTO sessions VALUES (NULL, ?, NULL,
+sqlite3.OperationalError: unable to open database file
+[I 2025-09-25 03:29:08.834 ServerApp] Connecting to kernel 9530bce4-b219-4c0d-a645-6ad77fd69b34.
+slurmstepd: error: *** JOB 19578794 ON tesla-v100 CANCELLED AT 2025-09-25T03:52:02 ***

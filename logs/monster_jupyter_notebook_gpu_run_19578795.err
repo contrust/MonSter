@@ -1,0 +1,252 @@
+Both `sys_prefix` and `user` level settings are read-only, cannot auto-migrate `disabledExtensions` to `lockedExtensions`
+[I 2025-09-25 03:52:49.861 ServerApp] jupyter_lsp | extension was successfully linked.
+[I 2025-09-25 03:52:49.866 ServerApp] jupyter_server_terminals | extension was successfully linked.
+[I 2025-09-25 03:52:49.872 ServerApp] jupyterlab | extension was successfully linked.
+[I 2025-09-25 03:52:49.877 ServerApp] notebook | extension was successfully linked.
+[I 2025-09-25 03:52:50.291 ServerApp] notebook_shim | extension was successfully linked.
+[I 2025-09-25 03:52:50.350 ServerApp] notebook_shim | extension was successfully loaded.
+[I 2025-09-25 03:52:50.352 ServerApp] jupyter_lsp | extension was successfully loaded.
+[I 2025-09-25 03:52:50.355 ServerApp] jupyter_server_terminals | extension was successfully loaded.
+[I 2025-09-25 03:52:50.361 LabApp] JupyterLab extension loaded from /home/s0214/.conda/envs/monster/lib/python3.8/site-packages/jupyterlab
+[I 2025-09-25 03:52:50.361 LabApp] JupyterLab application directory is /misc/home4/s0214/.conda/envs/monster/share/jupyter/lab
+[I 2025-09-25 03:52:50.362 LabApp] Extension Manager is 'pypi'.
+[I 2025-09-25 03:52:50.443 ServerApp] jupyterlab | extension was successfully loaded.
+[I 2025-09-25 03:52:50.451 ServerApp] notebook | extension was successfully loaded.
+[I 2025-09-25 03:52:50.451 ServerApp] Serving notebooks from local directory: /misc/home6/s0214/MonSter
+[I 2025-09-25 03:52:50.451 ServerApp] Jupyter Server 2.14.2 is running at:
+[I 2025-09-25 03:52:50.451 ServerApp] http://tesla-v100:8888/tree?token=94868152c473159eb477ec622f48c01da9ee5dfda9463afd
+[I 2025-09-25 03:52:50.451 ServerApp]     http://127.0.0.1:8888/tree?token=94868152c473159eb477ec622f48c01da9ee5dfda9463afd
+[I 2025-09-25 03:52:50.451 ServerApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[C 2025-09-25 03:52:50.475 ServerApp] 
+    
+    To access the server, open this file in a browser:
+        file:///misc/home4/s0214/.local/share/jupyter/runtime/jpserver-1909951-open.html
+    Or copy and paste one of these URLs:
+        http://tesla-v100:8888/tree?token=94868152c473159eb477ec622f48c01da9ee5dfda9463afd
+        http://127.0.0.1:8888/tree?token=94868152c473159eb477ec622f48c01da9ee5dfda9463afd
+[I 2025-09-25 03:52:50.555 ServerApp] Skipped non-installed server(s): basedpyright, bash-language-server, dockerfile-language-server-nodejs, javascript-typescript-langserver, jedi-language-server, julia-language-server, pyrefly, pyright, python-language-server, python-lsp-server, r-languageserver, sql-language-server, texlab, typescript-language-server, unified-language-server, vscode-css-languageserver-bin, vscode-html-languageserver-bin, vscode-json-languageserver-bin, yaml-language-server
+[I 2025-09-25 03:54:09.913 ServerApp] 302 GET / (@172.16.33.3) 0.58ms
+[I 2025-09-25 03:54:09.918 JupyterNotebookApp] 302 GET /tree? (@172.16.33.3) 0.66ms
+[I 2025-09-25 03:54:11.431 ServerApp] 302 GET / (@172.16.33.3) 0.61ms
+[I 2025-09-25 03:54:11.436 JupyterNotebookApp] 302 GET /tree? (@172.16.33.3) 0.73ms
+[W 2025-09-25 03:54:14.911 ServerApp] wrote error: 'Forbidden'
+    Traceback (most recent call last):
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/tornado/web.py", line 1788, in _execute
+        result = method(*self.path_args, **self.path_kwargs)
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/tornado/web.py", line 3289, in wrapper
+        url = self.get_login_url()
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/jupyter_server/base/handlers.py", line 783, in get_login_url
+        raise web.HTTPError(403)
+    tornado.web.HTTPError: HTTP 403: Forbidden
+[W 2025-09-25 03:54:14.915 ServerApp] 403 GET /api/kernelspecs?1758754454891 (@172.16.33.3) 5.71ms referer=None
+[W 2025-09-25 03:54:14.916 ServerApp] wrote error: 'Forbidden'
+    Traceback (most recent call last):
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/tornado/web.py", line 1788, in _execute
+        result = method(*self.path_args, **self.path_kwargs)
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/tornado/web.py", line 3289, in wrapper
+        url = self.get_login_url()
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/jupyter_server/base/handlers.py", line 783, in get_login_url
+        raise web.HTTPError(403)
+    tornado.web.HTTPError: HTTP 403: Forbidden
+[W 2025-09-25 03:54:14.916 ServerApp] 403 GET /api/kernels?1758754454892 (@172.16.33.3) 6.18ms referer=None
+[W 2025-09-25 03:54:14.921 ServerApp] wrote error: 'Forbidden'
+    Traceback (most recent call last):
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/tornado/web.py", line 1788, in _execute
+        result = method(*self.path_args, **self.path_kwargs)
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/tornado/web.py", line 3289, in wrapper
+        url = self.get_login_url()
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/jupyter_server/base/handlers.py", line 783, in get_login_url
+        raise web.HTTPError(403)
+    tornado.web.HTTPError: HTTP 403: Forbidden
+[W 2025-09-25 03:54:14.921 ServerApp] 403 GET /api/kernels?1758754454901 (@172.16.33.3) 4.06ms referer=None
+[W 2025-09-25 03:54:14.921 ServerApp] wrote error: 'Forbidden'
+    Traceback (most recent call last):
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/tornado/web.py", line 1788, in _execute
+        result = method(*self.path_args, **self.path_kwargs)
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/tornado/web.py", line 3289, in wrapper
+        url = self.get_login_url()
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/jupyter_server/base/handlers.py", line 783, in get_login_url
+        raise web.HTTPError(403)
+    tornado.web.HTTPError: HTTP 403: Forbidden
+[W 2025-09-25 03:54:14.922 ServerApp] 403 GET /api/sessions?1758754454902 (@172.16.33.3) 4.60ms referer=None
+[W 2025-09-25 03:54:14.936 ServerApp] wrote error: 'Forbidden'
+    Traceback (most recent call last):
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/tornado/web.py", line 1788, in _execute
+        result = method(*self.path_args, **self.path_kwargs)
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/tornado/web.py", line 3289, in wrapper
+        url = self.get_login_url()
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/jupyter_server/base/handlers.py", line 783, in get_login_url
+        raise web.HTTPError(403)
+    tornado.web.HTTPError: HTTP 403: Forbidden
+[W 2025-09-25 03:54:14.937 ServerApp] 403 GET /api/kernelspecs?1758754454921 (@172.16.33.3) 1.59ms referer=None
+[I 2025-09-25 03:54:14.937 ServerApp] 302 GET / (@172.16.33.3) 1.60ms
+[I 2025-09-25 03:54:14.943 JupyterNotebookApp] 302 GET /tree? (@172.16.33.3) 0.52ms
+[W 2025-09-25 03:54:14.954 ServerApp] wrote error: 'Forbidden'
+    Traceback (most recent call last):
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/tornado/web.py", line 1788, in _execute
+        result = method(*self.path_args, **self.path_kwargs)
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/tornado/web.py", line 3289, in wrapper
+        url = self.get_login_url()
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/jupyter_server/base/handlers.py", line 783, in get_login_url
+        raise web.HTTPError(403)
+    tornado.web.HTTPError: HTTP 403: Forbidden
+[W 2025-09-25 03:54:14.954 ServerApp] 403 GET /api/kernelspecs?1758754454950 (@172.16.33.3) 1.14ms referer=None
+[W 2025-09-25 03:54:14.959 ServerApp] wrote error: 'Forbidden'
+    Traceback (most recent call last):
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/tornado/web.py", line 1788, in _execute
+        result = method(*self.path_args, **self.path_kwargs)
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/tornado/web.py", line 3289, in wrapper
+        url = self.get_login_url()
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/jupyter_server/base/handlers.py", line 783, in get_login_url
+        raise web.HTTPError(403)
+    tornado.web.HTTPError: HTTP 403: Forbidden
+[W 2025-09-25 03:54:14.959 ServerApp] 403 GET /api/kernels?1758754454951 (@172.16.33.3) 0.97ms referer=None
+[W 2025-09-25 03:54:14.960 ServerApp] wrote error: 'Forbidden'
+    Traceback (most recent call last):
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/tornado/web.py", line 1788, in _execute
+        result = method(*self.path_args, **self.path_kwargs)
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/tornado/web.py", line 3289, in wrapper
+        url = self.get_login_url()
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/jupyter_server/base/handlers.py", line 783, in get_login_url
+        raise web.HTTPError(403)
+    tornado.web.HTTPError: HTTP 403: Forbidden
+[W 2025-09-25 03:54:14.961 ServerApp] 403 GET /api/kernels?1758754454952 (@172.16.33.3) 1.30ms referer=None
+[W 2025-09-25 03:54:14.961 ServerApp] wrote error: 'Forbidden'
+    Traceback (most recent call last):
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/tornado/web.py", line 1788, in _execute
+        result = method(*self.path_args, **self.path_kwargs)
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/tornado/web.py", line 3289, in wrapper
+        url = self.get_login_url()
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/jupyter_server/base/handlers.py", line 783, in get_login_url
+        raise web.HTTPError(403)
+    tornado.web.HTTPError: HTTP 403: Forbidden
+[W 2025-09-25 03:54:14.961 ServerApp] 403 GET /api/sessions?1758754454954 (@172.16.33.3) 1.72ms referer=None
+[W 2025-09-25 03:54:14.961 ServerApp] wrote error: 'Forbidden'
+    Traceback (most recent call last):
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/tornado/web.py", line 1788, in _execute
+        result = method(*self.path_args, **self.path_kwargs)
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/tornado/web.py", line 3289, in wrapper
+        url = self.get_login_url()
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/jupyter_server/base/handlers.py", line 783, in get_login_url
+        raise web.HTTPError(403)
+    tornado.web.HTTPError: HTTP 403: Forbidden
+[W 2025-09-25 03:54:14.962 ServerApp] 403 GET /api/kernelspecs?1758754454956 (@172.16.33.3) 2.11ms referer=None
+[I 2025-09-25 03:54:15.888 ServerApp] 302 GET / (@172.16.33.3) 0.30ms
+[I 2025-09-25 03:54:15.892 JupyterNotebookApp] 302 GET /tree? (@172.16.33.3) 0.46ms
+[I 2025-09-25 03:54:15.971 ServerApp] Kernel started: 6e075d6c-26b2-4b58-be89-fe33daa58a24
+[IPKernelApp] ERROR | Failed to create history session in /misc/home4/s0214/.ipython/profile_default/history.sqlite. History will not be saved.
+Traceback (most recent call last):
+  File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/IPython/core/history.py", line 543, in __init__
+    self.new_session()
+  File "<decorator-gen-15>", line 2, in new_session
+  File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/IPython/core/history.py", line 58, in needs_sqlite
+    return f(self, *a, **kw)
+  File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/IPython/core/history.py", line 568, in new_session
+    cur = conn.execute("""INSERT INTO sessions VALUES (NULL, ?, NULL,
+sqlite3.OperationalError: unable to open database file
+[I 2025-09-25 03:54:17.017 ServerApp] Connecting to kernel 6e075d6c-26b2-4b58-be89-fe33daa58a24.
+[I 2025-09-25 03:54:17.212 ServerApp] 302 GET / (@172.16.33.3) 4.36ms
+[I 2025-09-25 03:54:17.226 JupyterNotebookApp] 302 GET /tree? (@172.16.33.3) 0.64ms
+[W 2025-09-25 03:54:17.245 ServerApp] wrote error: 'Forbidden'
+    Traceback (most recent call last):
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/tornado/web.py", line 1788, in _execute
+        result = method(*self.path_args, **self.path_kwargs)
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/tornado/web.py", line 3289, in wrapper
+        url = self.get_login_url()
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/jupyter_server/base/handlers.py", line 783, in get_login_url
+        raise web.HTTPError(403)
+    tornado.web.HTTPError: HTTP 403: Forbidden
+[W 2025-09-25 03:54:17.246 ServerApp] 403 GET /api/kernelspecs?1758754457242 (@172.16.33.3) 1.13ms referer=None
+[W 2025-09-25 03:54:17.250 ServerApp] wrote error: 'Forbidden'
+    Traceback (most recent call last):
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/tornado/web.py", line 1788, in _execute
+        result = method(*self.path_args, **self.path_kwargs)
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/tornado/web.py", line 3289, in wrapper
+        url = self.get_login_url()
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/jupyter_server/base/handlers.py", line 783, in get_login_url
+        raise web.HTTPError(403)
+    tornado.web.HTTPError: HTTP 403: Forbidden
+[W 2025-09-25 03:54:17.250 ServerApp] 403 GET /api/kernels?1758754457243 (@172.16.33.3) 1.25ms referer=None
+[W 2025-09-25 03:54:17.252 ServerApp] wrote error: 'Forbidden'
+    Traceback (most recent call last):
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/tornado/web.py", line 1788, in _execute
+        result = method(*self.path_args, **self.path_kwargs)
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/tornado/web.py", line 3289, in wrapper
+        url = self.get_login_url()
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/jupyter_server/base/handlers.py", line 783, in get_login_url
+        raise web.HTTPError(403)
+    tornado.web.HTTPError: HTTP 403: Forbidden
+[W 2025-09-25 03:54:17.252 ServerApp] 403 GET /api/sessions?1758754457246 (@172.16.33.3) 1.53ms referer=None
+[W 2025-09-25 03:54:17.253 ServerApp] wrote error: 'Forbidden'
+    Traceback (most recent call last):
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/tornado/web.py", line 1788, in _execute
+        result = method(*self.path_args, **self.path_kwargs)
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/tornado/web.py", line 3289, in wrapper
+        url = self.get_login_url()
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/jupyter_server/base/handlers.py", line 783, in get_login_url
+        raise web.HTTPError(403)
+    tornado.web.HTTPError: HTTP 403: Forbidden
+[W 2025-09-25 03:54:17.253 ServerApp] 403 GET /api/kernelspecs?1758754457248 (@172.16.33.3) 1.90ms referer=None
+[W 2025-09-25 03:54:17.254 ServerApp] wrote error: 'Forbidden'
+    Traceback (most recent call last):
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/tornado/web.py", line 1788, in _execute
+        result = method(*self.path_args, **self.path_kwargs)
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/tornado/web.py", line 3289, in wrapper
+        url = self.get_login_url()
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/jupyter_server/base/handlers.py", line 783, in get_login_url
+        raise web.HTTPError(403)
+    tornado.web.HTTPError: HTTP 403: Forbidden
+[W 2025-09-25 03:54:17.255 ServerApp] 403 GET /api/kernels?1758754457244 (@172.16.33.3) 1.06ms referer=None
+[I 2025-09-25 03:54:17.260 ServerApp] 302 GET / (@172.16.33.3) 0.46ms
+[I 2025-09-25 03:54:17.262 JupyterNotebookApp] 302 GET /tree? (@172.16.33.3) 0.57ms
+[W 2025-09-25 03:54:17.269 ServerApp] wrote error: 'Forbidden'
+    Traceback (most recent call last):
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/tornado/web.py", line 1788, in _execute
+        result = method(*self.path_args, **self.path_kwargs)
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/tornado/web.py", line 3289, in wrapper
+        url = self.get_login_url()
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/jupyter_server/base/handlers.py", line 783, in get_login_url
+        raise web.HTTPError(403)
+    tornado.web.HTTPError: HTTP 403: Forbidden
+[W 2025-09-25 03:54:17.270 ServerApp] 403 GET /api/kernelspecs?1758754457266 (@172.16.33.3) 0.99ms referer=None
+[W 2025-09-25 03:54:17.274 ServerApp] wrote error: 'Forbidden'
+    Traceback (most recent call last):
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/tornado/web.py", line 1788, in _execute
+        result = method(*self.path_args, **self.path_kwargs)
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/tornado/web.py", line 3289, in wrapper
+        url = self.get_login_url()
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/jupyter_server/base/handlers.py", line 783, in get_login_url
+        raise web.HTTPError(403)
+    tornado.web.HTTPError: HTTP 403: Forbidden
+[W 2025-09-25 03:54:17.275 ServerApp] 403 GET /api/kernels?1758754457267 (@172.16.33.3) 1.06ms referer=None
+[W 2025-09-25 03:54:17.275 ServerApp] wrote error: 'Forbidden'
+    Traceback (most recent call last):
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/tornado/web.py", line 1788, in _execute
+        result = method(*self.path_args, **self.path_kwargs)
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/tornado/web.py", line 3289, in wrapper
+        url = self.get_login_url()
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/jupyter_server/base/handlers.py", line 783, in get_login_url
+        raise web.HTTPError(403)
+    tornado.web.HTTPError: HTTP 403: Forbidden
+[W 2025-09-25 03:54:17.276 ServerApp] 403 GET /api/kernels?1758754457268 (@172.16.33.3) 1.12ms referer=None
+[W 2025-09-25 03:54:17.277 ServerApp] wrote error: 'Forbidden'
+    Traceback (most recent call last):
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/tornado/web.py", line 1788, in _execute
+        result = method(*self.path_args, **self.path_kwargs)
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/tornado/web.py", line 3289, in wrapper
+        url = self.get_login_url()
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/jupyter_server/base/handlers.py", line 783, in get_login_url
+        raise web.HTTPError(403)
+    tornado.web.HTTPError: HTTP 403: Forbidden
+[W 2025-09-25 03:54:17.278 ServerApp] 403 GET /api/sessions?1758754457269 (@172.16.33.3) 1.56ms referer=None
+[W 2025-09-25 03:54:17.278 ServerApp] wrote error: 'Forbidden'
+    Traceback (most recent call last):
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/tornado/web.py", line 1788, in _execute
+        result = method(*self.path_args, **self.path_kwargs)
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/tornado/web.py", line 3289, in wrapper
+        url = self.get_login_url()
+      File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/jupyter_server/base/handlers.py", line 783, in get_login_url
+        raise web.HTTPError(403)
+    tornado.web.HTTPError: HTTP 403: Forbidden
+[W 2025-09-25 03:54:17.279 ServerApp] 403 GET /api/kernelspecs?1758754457272 (@172.16.33.3) 1.97ms referer=None
+slurmstepd: error: *** JOB 19578795 ON tesla-v100 CANCELLED AT 2025-09-25T04:22:25 ***

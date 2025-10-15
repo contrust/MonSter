@@ -1,0 +1,211 @@
+The following values were not passed to `accelerate launch` and had defaults used instead:
+		More than one GPU was found, enabling multi-GPU training.
+		If this was unintended please pass in `--num_processes=1`.
+	`--mixed_precision` was set to a value of `'no'`
+	`--dynamo_backend` was set to a value of `'no'`
+To avoid this warning pass in values for each of the problematic parameters or run `accelerate config`.
+xFormers not available
+xFormers not available
+xFormers not available
+xFormers not available
+xFormers not available
+xFormers not available
+xFormers not available
+xFormers not available
+Error executing job with overrides: []
+Traceback (most recent call last):
+  File "train_whu.py", line 119, in main
+    model.load_state_dict(ckpt, strict=True)
+  File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/torch/nn/modules/module.py", line 2152, in load_state_dict
+    raise RuntimeError('Error(s) in loading state_dict for {}:\n\t{}'.format(
+RuntimeError: Error(s) in loading state_dict for Monster:
+	size mismatch for update_block.gru04.convz.weight: copying a param with shape torch.Size([128, 384, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 640, 3, 3]).
+	size mismatch for update_block.gru04.convz.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for update_block.gru04.convr.weight: copying a param with shape torch.Size([128, 384, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 640, 3, 3]).
+	size mismatch for update_block.gru04.convr.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for update_block.gru04.convq.weight: copying a param with shape torch.Size([128, 384, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 640, 3, 3]).
+	size mismatch for update_block.gru04.convq.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for update_block.gru08.convz.weight: copying a param with shape torch.Size([128, 384, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 768, 3, 3]).
+	size mismatch for update_block.gru08.convz.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for update_block.gru08.convr.weight: copying a param with shape torch.Size([128, 384, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 768, 3, 3]).
+	size mismatch for update_block.gru08.convr.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for update_block.gru08.convq.weight: copying a param with shape torch.Size([128, 384, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 768, 3, 3]).
+	size mismatch for update_block.gru08.convq.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for update_block.gru16.convz.weight: copying a param with shape torch.Size([128, 256, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 512, 3, 3]).
+	size mismatch for update_block.gru16.convz.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for update_block.gru16.convr.weight: copying a param with shape torch.Size([128, 256, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 512, 3, 3]).
+	size mismatch for update_block.gru16.convr.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for update_block.gru16.convq.weight: copying a param with shape torch.Size([128, 256, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 512, 3, 3]).
+	size mismatch for update_block.gru16.convq.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for update_block.disp_head.conv1.weight: copying a param with shape torch.Size([256, 128, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 256, 3, 3]).
+	size mismatch for update_block.mask_feat_4.0.weight: copying a param with shape torch.Size([32, 128, 3, 3]) from checkpoint, the shape in current model is torch.Size([32, 256, 3, 3]).
+	size mismatch for context_zqr_convs.0.weight: copying a param with shape torch.Size([384, 128, 3, 3]) from checkpoint, the shape in current model is torch.Size([768, 256, 3, 3]).
+	size mismatch for context_zqr_convs.0.bias: copying a param with shape torch.Size([384]) from checkpoint, the shape in current model is torch.Size([768]).
+	size mismatch for context_zqr_convs.1.weight: copying a param with shape torch.Size([384, 128, 3, 3]) from checkpoint, the shape in current model is torch.Size([768, 256, 3, 3]).
+	size mismatch for context_zqr_convs.1.bias: copying a param with shape torch.Size([384]) from checkpoint, the shape in current model is torch.Size([768]).
+	size mismatch for context_zqr_convs.2.weight: copying a param with shape torch.Size([384, 128, 3, 3]) from checkpoint, the shape in current model is torch.Size([768, 256, 3, 3]).
+	size mismatch for context_zqr_convs.2.bias: copying a param with shape torch.Size([384]) from checkpoint, the shape in current model is torch.Size([768]).
+	size mismatch for feat_transfer_cnet.res_16x.weight: copying a param with shape torch.Size([128, 448, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 448, 3, 3]).
+	size mismatch for feat_transfer_cnet.res_16x.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for feat_transfer_cnet.res_8x.weight: copying a param with shape torch.Size([128, 352, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 352, 3, 3]).
+	size mismatch for feat_transfer_cnet.res_8x.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for feat_transfer_cnet.res_4x.weight: copying a param with shape torch.Size([128, 304, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 304, 3, 3]).
+	size mismatch for feat_transfer_cnet.res_4x.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for update_block_mix_stereo.gru04.convz.weight: copying a param with shape torch.Size([128, 384, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 640, 3, 3]).
+	size mismatch for update_block_mix_stereo.gru04.convz.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for update_block_mix_stereo.gru04.convr.weight: copying a param with shape torch.Size([128, 384, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 640, 3, 3]).
+	size mismatch for update_block_mix_stereo.gru04.convr.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for update_block_mix_stereo.gru04.convq.weight: copying a param with shape torch.Size([128, 384, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 640, 3, 3]).
+	size mismatch for update_block_mix_stereo.gru04.convq.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for update_block_mix_stereo.gru08.convz.weight: copying a param with shape torch.Size([128, 384, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 768, 3, 3]).
+	size mismatch for update_block_mix_stereo.gru08.convz.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for update_block_mix_stereo.gru08.convr.weight: copying a param with shape torch.Size([128, 384, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 768, 3, 3]).
+	size mismatch for update_block_mix_stereo.gru08.convr.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for update_block_mix_stereo.gru08.convq.weight: copying a param with shape torch.Size([128, 384, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 768, 3, 3]).
+	size mismatch for update_block_mix_stereo.gru08.convq.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for update_block_mix_stereo.gru16.convz.weight: copying a param with shape torch.Size([128, 256, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 512, 3, 3]).
+	size mismatch for update_block_mix_stereo.gru16.convz.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for update_block_mix_stereo.gru16.convr.weight: copying a param with shape torch.Size([128, 256, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 512, 3, 3]).
+	size mismatch for update_block_mix_stereo.gru16.convr.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for update_block_mix_stereo.gru16.convq.weight: copying a param with shape torch.Size([128, 256, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 512, 3, 3]).
+	size mismatch for update_block_mix_stereo.gru16.convq.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for update_block_mix_stereo.disp_head.conv1.weight: copying a param with shape torch.Size([256, 128, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 256, 3, 3]).
+	size mismatch for update_block_mix_stereo.mask_feat_4.0.weight: copying a param with shape torch.Size([32, 128, 3, 3]) from checkpoint, the shape in current model is torch.Size([32, 256, 3, 3]).
+	size mismatch for update_block_mix_mono.gru04.convz.weight: copying a param with shape torch.Size([128, 384, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 640, 3, 3]).
+	size mismatch for update_block_mix_mono.gru04.convz.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for update_block_mix_mono.gru04.convr.weight: copying a param with shape torch.Size([128, 384, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 640, 3, 3]).
+	size mismatch for update_block_mix_mono.gru04.convr.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for update_block_mix_mono.gru04.convq.weight: copying a param with shape torch.Size([128, 384, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 640, 3, 3]).
+	size mismatch for update_block_mix_mono.gru04.convq.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for update_block_mix_mono.gru08.convz.weight: copying a param with shape torch.Size([128, 384, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 768, 3, 3]).
+	size mismatch for update_block_mix_mono.gru08.convz.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for update_block_mix_mono.gru08.convr.weight: copying a param with shape torch.Size([128, 384, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 768, 3, 3]).
+	size mismatch for update_block_mix_mono.gru08.convr.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for update_block_mix_mono.gru08.convq.weight: copying a param with shape torch.Size([128, 384, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 768, 3, 3]).
+	size mismatch for update_block_mix_mono.gru08.convq.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for update_block_mix_mono.gru16.convz.weight: copying a param with shape torch.Size([128, 256, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 512, 3, 3]).
+	size mismatch for update_block_mix_mono.gru16.convz.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for update_block_mix_mono.gru16.convr.weight: copying a param with shape torch.Size([128, 256, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 512, 3, 3]).
+	size mismatch for update_block_mix_mono.gru16.convr.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for update_block_mix_mono.gru16.convq.weight: copying a param with shape torch.Size([128, 256, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 512, 3, 3]).
+	size mismatch for update_block_mix_mono.gru16.convq.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for update_block_mix_mono.disp_head.conv1.weight: copying a param with shape torch.Size([256, 128, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 256, 3, 3]).
+	size mismatch for update_block_mix_mono.mask_feat_4.0.weight: copying a param with shape torch.Size([32, 128, 3, 3]) from checkpoint, the shape in current model is torch.Size([32, 256, 3, 3]).
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+Error executing job with overrides: []
+Traceback (most recent call last):
+  File "train_whu.py", line 119, in main
+    model.load_state_dict(ckpt, strict=True)
+  File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/torch/nn/modules/module.py", line 2152, in load_state_dict
+    raise RuntimeError('Error(s) in loading state_dict for {}:\n\t{}'.format(
+RuntimeError: Error(s) in loading state_dict for Monster:
+	size mismatch for update_block.gru04.convz.weight: copying a param with shape torch.Size([128, 384, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 640, 3, 3]).
+	size mismatch for update_block.gru04.convz.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for update_block.gru04.convr.weight: copying a param with shape torch.Size([128, 384, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 640, 3, 3]).
+	size mismatch for update_block.gru04.convr.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for update_block.gru04.convq.weight: copying a param with shape torch.Size([128, 384, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 640, 3, 3]).
+	size mismatch for update_block.gru04.convq.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for update_block.gru08.convz.weight: copying a param with shape torch.Size([128, 384, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 768, 3, 3]).
+	size mismatch for update_block.gru08.convz.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for update_block.gru08.convr.weight: copying a param with shape torch.Size([128, 384, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 768, 3, 3]).
+	size mismatch for update_block.gru08.convr.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for update_block.gru08.convq.weight: copying a param with shape torch.Size([128, 384, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 768, 3, 3]).
+	size mismatch for update_block.gru08.convq.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for update_block.gru16.convz.weight: copying a param with shape torch.Size([128, 256, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 512, 3, 3]).
+	size mismatch for update_block.gru16.convz.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for update_block.gru16.convr.weight: copying a param with shape torch.Size([128, 256, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 512, 3, 3]).
+	size mismatch for update_block.gru16.convr.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for update_block.gru16.convq.weight: copying a param with shape torch.Size([128, 256, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 512, 3, 3]).
+	size mismatch for update_block.gru16.convq.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for update_block.disp_head.conv1.weight: copying a param with shape torch.Size([256, 128, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 256, 3, 3]).
+	size mismatch for update_block.mask_feat_4.0.weight: copying a param with shape torch.Size([32, 128, 3, 3]) from checkpoint, the shape in current model is torch.Size([32, 256, 3, 3]).
+	size mismatch for context_zqr_convs.0.weight: copying a param with shape torch.Size([384, 128, 3, 3]) from checkpoint, the shape in current model is torch.Size([768, 256, 3, 3]).
+	size mismatch for context_zqr_convs.0.bias: copying a param with shape torch.Size([384]) from checkpoint, the shape in current model is torch.Size([768]).
+	size mismatch for context_zqr_convs.1.weight: copying a param with shape torch.Size([384, 128, 3, 3]) from checkpoint, the shape in current model is torch.Size([768, 256, 3, 3]).
+	size mismatch for context_zqr_convs.1.bias: copying a param with shape torch.Size([384]) from checkpoint, the shape in current model is torch.Size([768]).
+	size mismatch for context_zqr_convs.2.weight: copying a param with shape torch.Size([384, 128, 3, 3]) from checkpoint, the shape in current model is torch.Size([768, 256, 3, 3]).
+	size mismatch for context_zqr_convs.2.bias: copying a param with shape torch.Size([384]) from checkpoint, the shape in current model is torch.Size([768]).
+	size mismatch for feat_transfer_cnet.res_16x.weight: copying a param with shape torch.Size([128, 448, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 448, 3, 3]).
+	size mismatch for feat_transfer_cnet.res_16x.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for feat_transfer_cnet.res_8x.weight: copying a param with shape torch.Size([128, 352, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 352, 3, 3]).
+	size mismatch for feat_transfer_cnet.res_8x.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for feat_transfer_cnet.res_4x.weight: copying a param with shape torch.Size([128, 304, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 304, 3, 3]).
+	size mismatch for feat_transfer_cnet.res_4x.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for update_block_mix_stereo.gru04.convz.weight: copying a param with shape torch.Size([128, 384, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 640, 3, 3]).
+	size mismatch for update_block_mix_stereo.gru04.convz.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for update_block_mix_stereo.gru04.convr.weight: copying a param with shape torch.Size([128, 384, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 640, 3, 3]).
+	size mismatch for update_block_mix_stereo.gru04.convr.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for update_block_mix_stereo.gru04.convq.weight: copying a param with shape torch.Size([128, 384, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 640, 3, 3]).
+	size mismatch for update_block_mix_stereo.gru04.convq.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for update_block_mix_stereo.gru08.convz.weight: copying a param with shape torch.Size([128, 384, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 768, 3, 3]).
+	size mismatch for update_block_mix_stereo.gru08.convz.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for update_block_mix_stereo.gru08.convr.weight: copying a param with shape torch.Size([128, 384, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 768, 3, 3]).
+	size mismatch for update_block_mix_stereo.gru08.convr.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for update_block_mix_stereo.gru08.convq.weight: copying a param with shape torch.Size([128, 384, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 768, 3, 3]).
+	size mismatch for update_block_mix_stereo.gru08.convq.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for update_block_mix_stereo.gru16.convz.weight: copying a param with shape torch.Size([128, 256, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 512, 3, 3]).
+	size mismatch for update_block_mix_stereo.gru16.convz.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for update_block_mix_stereo.gru16.convr.weight: copying a param with shape torch.Size([128, 256, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 512, 3, 3]).
+	size mismatch for update_block_mix_stereo.gru16.convr.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for update_block_mix_stereo.gru16.convq.weight: copying a param with shape torch.Size([128, 256, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 512, 3, 3]).
+	size mismatch for update_block_mix_stereo.gru16.convq.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for update_block_mix_stereo.disp_head.conv1.weight: copying a param with shape torch.Size([256, 128, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 256, 3, 3]).
+	size mismatch for update_block_mix_stereo.mask_feat_4.0.weight: copying a param with shape torch.Size([32, 128, 3, 3]) from checkpoint, the shape in current model is torch.Size([32, 256, 3, 3]).
+	size mismatch for update_block_mix_mono.gru04.convz.weight: copying a param with shape torch.Size([128, 384, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 640, 3, 3]).
+	size mismatch for update_block_mix_mono.gru04.convz.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for update_block_mix_mono.gru04.convr.weight: copying a param with shape torch.Size([128, 384, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 640, 3, 3]).
+	size mismatch for update_block_mix_mono.gru04.convr.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for update_block_mix_mono.gru04.convq.weight: copying a param with shape torch.Size([128, 384, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 640, 3, 3]).
+	size mismatch for update_block_mix_mono.gru04.convq.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for update_block_mix_mono.gru08.convz.weight: copying a param with shape torch.Size([128, 384, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 768, 3, 3]).
+	size mismatch for update_block_mix_mono.gru08.convz.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for update_block_mix_mono.gru08.convr.weight: copying a param with shape torch.Size([128, 384, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 768, 3, 3]).
+	size mismatch for update_block_mix_mono.gru08.convr.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for update_block_mix_mono.gru08.convq.weight: copying a param with shape torch.Size([128, 384, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 768, 3, 3]).
+	size mismatch for update_block_mix_mono.gru08.convq.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for update_block_mix_mono.gru16.convz.weight: copying a param with shape torch.Size([128, 256, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 512, 3, 3]).
+	size mismatch for update_block_mix_mono.gru16.convz.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for update_block_mix_mono.gru16.convr.weight: copying a param with shape torch.Size([128, 256, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 512, 3, 3]).
+	size mismatch for update_block_mix_mono.gru16.convr.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for update_block_mix_mono.gru16.convq.weight: copying a param with shape torch.Size([128, 256, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 512, 3, 3]).
+	size mismatch for update_block_mix_mono.gru16.convq.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([256]).
+	size mismatch for update_block_mix_mono.disp_head.conv1.weight: copying a param with shape torch.Size([256, 128, 3, 3]) from checkpoint, the shape in current model is torch.Size([256, 256, 3, 3]).
+	size mismatch for update_block_mix_mono.mask_feat_4.0.weight: copying a param with shape torch.Size([32, 128, 3, 3]) from checkpoint, the shape in current model is torch.Size([32, 256, 3, 3]).
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+[2025-08-10 22:06:04,797] torch.distributed.elastic.multiprocessing.api: [WARNING] Sending process 323545 closing signal SIGTERM
+[2025-08-10 22:06:04,798] torch.distributed.elastic.multiprocessing.api: [WARNING] Sending process 323547 closing signal SIGTERM
+[2025-08-10 22:06:04,798] torch.distributed.elastic.multiprocessing.api: [WARNING] Sending process 323548 closing signal SIGTERM
+[2025-08-10 22:06:04,976] torch.distributed.elastic.multiprocessing.api: [ERROR] failed (exitcode: 1) local_rank: 1 (pid: 323546) of binary: /home/s0214/.conda/envs/monster/bin/python
+Traceback (most recent call last):
+  File "/home/s0214/.conda/envs/monster/bin/accelerate", line 8, in <module>
+    sys.exit(main())
+  File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/accelerate/commands/accelerate_cli.py", line 48, in main
+    args.func(args)
+  File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/accelerate/commands/launch.py", line 1159, in launch_command
+    multi_gpu_launcher(args)
+  File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/accelerate/commands/launch.py", line 793, in multi_gpu_launcher
+    distrib_run.run(args)
+  File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/torch/distributed/run.py", line 797, in run
+    elastic_launch(
+  File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/torch/distributed/launcher/api.py", line 134, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/torch/distributed/launcher/api.py", line 264, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+train_whu.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2025-08-10_22:06:04
+  host      : tesla-v100
+  rank      : 1 (local_rank: 1)
+  exitcode  : 1 (pid: 323546)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

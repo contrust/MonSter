@@ -1,0 +1,62 @@
+The following values were not passed to `accelerate launch` and had defaults used instead:
+		More than one GPU was found, enabling multi-GPU training.
+		If this was unintended please pass in `--num_processes=1`.
+	`--mixed_precision` was set to a value of `'no'`
+	`--dynamo_backend` was set to a value of `'no'`
+To avoid this warning pass in values for each of the problematic parameters or run `accelerate config`.
+/home/s0214/.conda/envs/monster/bin/python: can't open file 'python3': [Errno 2] No such file or directory
+/home/s0214/.conda/envs/monster/bin/python: can't open file 'python3': [Errno 2] No such file or directory
+/home/s0214/.conda/envs/monster/bin/python: can't open file 'python3': [Errno 2] No such file or directory
+/home/s0214/.conda/envs/monster/bin/python: can't open file 'python3': [Errno 2] No such file or directory
+[2025-08-10 20:18:01,726] torch.distributed.elastic.multiprocessing.api: [ERROR] failed (exitcode: 2) local_rank: 0 (pid: 3976984) of binary: /home/s0214/.conda/envs/monster/bin/python
+Traceback (most recent call last):
+  File "/home/s0214/.conda/envs/monster/bin/accelerate", line 8, in <module>
+    sys.exit(main())
+  File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/accelerate/commands/accelerate_cli.py", line 48, in main
+    args.func(args)
+  File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/accelerate/commands/launch.py", line 1159, in launch_command
+    multi_gpu_launcher(args)
+  File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/accelerate/commands/launch.py", line 793, in multi_gpu_launcher
+    distrib_run.run(args)
+  File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/torch/distributed/run.py", line 797, in run
+    elastic_launch(
+  File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/torch/distributed/launcher/api.py", line 134, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/torch/distributed/launcher/api.py", line 264, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+python3 FAILED
+------------------------------------------------------------
+Failures:
+[1]:
+  time      : 2025-08-10_20:18:01
+  host      : tesla28
+  rank      : 1 (local_rank: 1)
+  exitcode  : 2 (pid: 3976985)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+[2]:
+  time      : 2025-08-10_20:18:01
+  host      : tesla28
+  rank      : 2 (local_rank: 2)
+  exitcode  : 2 (pid: 3976986)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+[3]:
+  time      : 2025-08-10_20:18:01
+  host      : tesla28
+  rank      : 3 (local_rank: 3)
+  exitcode  : 2 (pid: 3976987)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2025-08-10_20:18:01
+  host      : tesla28
+  rank      : 0 (local_rank: 0)
+  exitcode  : 2 (pid: 3976984)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

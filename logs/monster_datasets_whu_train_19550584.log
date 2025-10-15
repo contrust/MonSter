@@ -1,0 +1,25 @@
+[2025-08-10 22:20:04,511][accelerate.utils.other][WARNING] - Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
+train_datasets ['whu']
+[2025-08-10 22:20:04,525][root][INFO] - Adding 1220 samples from WHU Stereo
+train_datasets ['whu']
+[2025-08-10 22:20:04,566][root][INFO] - Adding 1220 samples from WHU Stereo
+[2025-08-10 22:20:04,689][dinov2][INFO] - using MLP layer as FFN
+[2025-08-10 22:20:04,693][dinov2][INFO] - using MLP layer as FFN
+train_datasets ['whu']
+[2025-08-10 22:20:04,876][root][INFO] - Adding 1220 samples from WHU Stereo
+train_datasets ['whu']
+[2025-08-10 22:20:04,956][root][INFO] - Adding 1220 samples from WHU Stereo
+[2025-08-10 22:20:05,072][dinov2][INFO] - using MLP layer as FFN
+[2025-08-10 22:20:05,084][dinov2][INFO] - using MLP layer as FFN
+DepthAnythingV2 out_channels [96, 192, 384, 768]
+DepthAnythingV2_decoder out_channels [96, 192, 384, 768]
+DepthAnythingV2 out_channels [96, 192, 384, 768]
+DepthAnythingV2_decoder out_channels [96, 192, 384, 768]
+DepthAnythingV2 out_channels [96, 192, 384, 768]
+DepthAnythingV2 out_channels [96, 192, 384, 768]
+DepthAnythingV2_decoder out_channels [96, 192, 384, 768]
+DepthAnythingV2_decoder out_channels [96, 192, 384, 768]
+Loading checkpoint from ./checkpoints/mix_all.pth
+Loading checkpoint from ./checkpoints/mix_all.pth
+Loading checkpoint from ./checkpoints/mix_all.pth
+Loading checkpoint from ./checkpoints/mix_all.pth

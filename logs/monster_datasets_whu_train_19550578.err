@@ -1,0 +1,73 @@
+The following values were not passed to `accelerate launch` and had defaults used instead:
+		More than one GPU was found, enabling multi-GPU training.
+		If this was unintended please pass in `--num_processes=1`.
+	`--mixed_precision` was set to a value of `'no'`
+	`--dynamo_backend` was set to a value of `'no'`
+To avoid this warning pass in values for each of the problematic parameters or run `accelerate config`.
+xFormers not available
+xFormers not available
+xFormers not available
+xFormers not available
+xFormers not available
+xFormers not available
+xFormers not available
+xFormers not available
+wandb: W&B API key is configured. Use `wandb login --relogin` to force relogin
+Error executing job with overrides: []
+Traceback (most recent call last):
+  File "train_whu.py", line 98, in main
+    accelerator.init_trackers(project_name=cfg.project_name, config=OmegaConf.to_container(cfg, resolve=True), init_kwargs={'wandb': cfg.wandb})
+  File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/accelerate/accelerator.py", line 734, in _inner
+    return PartialState().on_main_process(function)(*args, **kwargs)
+  File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/accelerate/accelerator.py", line 2701, in init_trackers
+    self.trackers.append(tracker_init(project_name, **init_kwargs.get(str(tracker), {})))
+  File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/accelerate/tracking.py", line 81, in execute_on_main_process
+    return function(self, *args, **kwargs)
+  File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/accelerate/tracking.py", line 298, in __init__
+    self.run = wandb.init(project=self.run_name, **kwargs)
+  File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/wandb/sdk/wandb_init.py", line 1620, in init
+    wandb._sentry.reraise(e)
+  File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/wandb/analytics/sentry.py", line 157, in reraise
+    raise exc.with_traceback(sys.exc_info()[2])
+  File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/wandb/sdk/wandb_init.py", line 1606, in init
+    return wi.init(run_settings, run_config, run_printer)
+  File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/wandb/sdk/wandb_init.py", line 1018, in init
+    raise error
+wandb.errors.errors.CommError: Error uploading run: returned error 403: {"data":null,"errors":[{"message":"\u003c!doctype html\u003e\u003cmeta charset=\"utf-8\"\u003e\u003cmeta name=viewport content=\"width=device-width, initial-scale=1\"\u003e\u003ctitle\u003e403\u003c/title\u003e403 Forbidden"}]}
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+[2025-08-10 21:58:49,657] torch.distributed.elastic.multiprocessing.api: [WARNING] Sending process 321369 closing signal SIGTERM
+[2025-08-10 21:58:49,658] torch.distributed.elastic.multiprocessing.api: [WARNING] Sending process 321370 closing signal SIGTERM
+[2025-08-10 21:58:49,658] torch.distributed.elastic.multiprocessing.api: [WARNING] Sending process 321371 closing signal SIGTERM
+[2025-08-10 21:58:49,936] torch.distributed.elastic.multiprocessing.api: [ERROR] failed (exitcode: 1) local_rank: 0 (pid: 321368) of binary: /home/s0214/.conda/envs/monster/bin/python
+Traceback (most recent call last):
+  File "/home/s0214/.conda/envs/monster/bin/accelerate", line 8, in <module>
+    sys.exit(main())
+  File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/accelerate/commands/accelerate_cli.py", line 48, in main
+    args.func(args)
+  File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/accelerate/commands/launch.py", line 1159, in launch_command
+    multi_gpu_launcher(args)
+  File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/accelerate/commands/launch.py", line 793, in multi_gpu_launcher
+    distrib_run.run(args)
+  File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/torch/distributed/run.py", line 797, in run
+    elastic_launch(
+  File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/torch/distributed/launcher/api.py", line 134, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/torch/distributed/launcher/api.py", line 264, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+train_whu.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2025-08-10_21:58:49
+  host      : tesla-v100
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 321368)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

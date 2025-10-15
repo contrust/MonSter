@@ -1,0 +1,85 @@
+The following values were not passed to `accelerate launch` and had defaults used instead:
+		More than one GPU was found, enabling multi-GPU training.
+		If this was unintended please pass in `--num_processes=1`.
+	`--mixed_precision` was set to a value of `'no'`
+	`--dynamo_backend` was set to a value of `'no'`
+To avoid this warning pass in values for each of the problematic parameters or run `accelerate config`.
+xFormers not available
+xFormers not available
+xFormers not available
+xFormers not available
+xFormers not available
+xFormers not available
+xFormers not available
+xFormers not available
+Error executing job with overrides: []
+Traceback (most recent call last):
+  File "train_whu.py", line 97, in main
+    accelerator = Accelerator(mixed_precision='bf16', dataloader_config=DataLoaderConfiguration(use_seedable_sampler=True), log_with='wandb', kwargs_handlers=[kwargs], step_scheduler_with_optimizer=False)
+  File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/accelerate/accelerator.py", line 516, in __init__
+    raise ValueError("bf16 mixed precision requires PyTorch >= 1.10 and a supported device.")
+ValueError: bf16 mixed precision requires PyTorch >= 1.10 and a supported device.
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+Error executing job with overrides: []
+Traceback (most recent call last):
+  File "train_whu.py", line 97, in main
+    accelerator = Accelerator(mixed_precision='bf16', dataloader_config=DataLoaderConfiguration(use_seedable_sampler=True), log_with='wandb', kwargs_handlers=[kwargs], step_scheduler_with_optimizer=False)
+  File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/accelerate/accelerator.py", line 516, in __init__
+    raise ValueError("bf16 mixed precision requires PyTorch >= 1.10 and a supported device.")
+ValueError: bf16 mixed precision requires PyTorch >= 1.10 and a supported device.
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+Error executing job with overrides: []
+Traceback (most recent call last):
+  File "train_whu.py", line 97, in main
+    accelerator = Accelerator(mixed_precision='bf16', dataloader_config=DataLoaderConfiguration(use_seedable_sampler=True), log_with='wandb', kwargs_handlers=[kwargs], step_scheduler_with_optimizer=False)
+  File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/accelerate/accelerator.py", line 516, in __init__
+    raise ValueError("bf16 mixed precision requires PyTorch >= 1.10 and a supported device.")
+ValueError: bf16 mixed precision requires PyTorch >= 1.10 and a supported device.
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+Error executing job with overrides: []
+Traceback (most recent call last):
+  File "train_whu.py", line 97, in main
+    accelerator = Accelerator(mixed_precision='bf16', dataloader_config=DataLoaderConfiguration(use_seedable_sampler=True), log_with='wandb', kwargs_handlers=[kwargs], step_scheduler_with_optimizer=False)
+  File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/accelerate/accelerator.py", line 516, in __init__
+    raise ValueError("bf16 mixed precision requires PyTorch >= 1.10 and a supported device.")
+ValueError: bf16 mixed precision requires PyTorch >= 1.10 and a supported device.
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+[2025-08-10 21:35:47,417] torch.distributed.elastic.multiprocessing.api: [WARNING] Sending process 319708 closing signal SIGTERM
+[2025-08-10 21:35:47,417] torch.distributed.elastic.multiprocessing.api: [WARNING] Sending process 319709 closing signal SIGTERM
+[2025-08-10 21:35:47,417] torch.distributed.elastic.multiprocessing.api: [WARNING] Sending process 319710 closing signal SIGTERM
+[2025-08-10 21:35:47,682] torch.distributed.elastic.multiprocessing.api: [ERROR] failed (exitcode: 1) local_rank: 0 (pid: 319707) of binary: /home/s0214/.conda/envs/monster/bin/python
+Traceback (most recent call last):
+  File "/home/s0214/.conda/envs/monster/bin/accelerate", line 8, in <module>
+    sys.exit(main())
+  File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/accelerate/commands/accelerate_cli.py", line 48, in main
+    args.func(args)
+  File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/accelerate/commands/launch.py", line 1159, in launch_command
+    multi_gpu_launcher(args)
+  File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/accelerate/commands/launch.py", line 793, in multi_gpu_launcher
+    distrib_run.run(args)
+  File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/torch/distributed/run.py", line 797, in run
+    elastic_launch(
+  File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/torch/distributed/launcher/api.py", line 134, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/home/s0214/.conda/envs/monster/lib/python3.8/site-packages/torch/distributed/launcher/api.py", line 264, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+train_whu.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2025-08-10_21:35:47
+  host      : tesla-v100
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 319707)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

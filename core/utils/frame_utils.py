@@ -9,6 +9,7 @@ cv2.setNumThreads(0)
 cv2.ocl.setUseOpenCL(False)
 
 TAG_CHAR = np.array([202021.25], np.float32)
+WHU_INVALID_DISPARITY_VALUE = -999
 US3D_INVALID_DISPARITY_VALUE = -999
 
 def readFlow(fn):
@@ -207,7 +208,19 @@ def readDispTartanAir(file_name):
 
 def readDispWHU(filename):
     disp = np.array(Image.open(filename)).astype(np.float32)
+    
+    # Handle satellite stereo negative disparities
     valid = disp != WHU_INVALID_DISPARITY_VALUE
+    
+    # Option A: Shift to positive range (preserves relative geometry)
+    #disp_shifted = disp.copy()
+    #if disp[valid].min() < 0:
+    #    min_disp = disp[valid].min()
+    #    disp_shifted[valid] = disp[valid] - min_disp + 1.0
+    
+    # Option B: Take absolute values (simpler but loses sign info)
+    #disp_shifted[valid] = np.abs(disp[valid])
+    
     return disp, valid
 
 def readDispMiddlebury(file_name):

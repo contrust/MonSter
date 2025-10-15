@@ -125,6 +125,25 @@ class StereoDataset(data.Dataset):
         return len(self.image_list)
 
 
+class US3D(StereoDataset):
+    def __init__(self, aug_params=None, root='datasets/us3d', image_set='images', disp_set='disp'):
+        super(US3D, self).__init__(aug_params, reader=frame_utils.readDispUS3D)
+        self.root = root
+        self.image_set = image_set
+        self.disp_set = disp_set
+        image_set_path = osp.join(root, image_set)
+        disp_set_path = osp.join(root, disp_set)
+        assert os.path.exists(root)
+        assert os.path.exists(image_set_path)
+        assert os.path.exists(disp_set_path)
+        image1_list = sorted(glob(osp.join(image_set_path, '*LEFT*.tif')))
+        image2_list = sorted(glob(osp.join(image_set_path, '*RIGHT*.tif')))
+        disp_list = sorted(glob(osp.join(disp_set_path, '*DSP*.tif')))
+        assert len(image1_list) == len(image2_list) == len(disp_list)
+        for img1, img2, disp in zip(image1_list, image2_list, disp_list):
+            self.image_list += [ [img1, img2] ]
+            self.disparity_list += [ disp ]
+
 class SceneFlowDatasets(StereoDataset):
     def __init__(self, aug_params=None, root='/data2/cjd/StereoDatasets/sceneflow', dstype='frames_finalpass', things_test=False):
         super(SceneFlowDatasets, self).__init__(aug_params)

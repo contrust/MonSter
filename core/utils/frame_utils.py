@@ -9,7 +9,7 @@ cv2.setNumThreads(0)
 cv2.ocl.setUseOpenCL(False)
 
 TAG_CHAR = np.array([202021.25], np.float32)
-WHU_INVALID_DISPARITY_VALUE = -999
+US3D_INVALID_DISPARITY_VALUE = -999
 
 def readFlow(fn):
     """ Read .flo file in Middlebury format"""
@@ -177,6 +177,11 @@ def readDispFallingThings(file_name):
     fx = intrinsics['camera_settings'][0]['intrinsic_settings']['fx']
     disp = (fx * 6.0 * 100) / a.astype(np.float32)
     valid = disp > 0
+    return disp, valid
+
+def readDispUS3D(file_name):
+    disp = np.array(Image.open(file_name), dtype=np.float32)
+    valid = disp != US3D_INVALID_DISPARITY_VALUE
     return disp, valid
 
 # Method taken from https://github.com/castacks/tartanair_tools/blob/master/data_type.md

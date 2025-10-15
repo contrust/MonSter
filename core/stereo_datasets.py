@@ -464,6 +464,9 @@ def fetch_dataloader(args):
         elif dataset_name == 'whu':
             new_dataset = WHU(aug_params, image_set='training')
             logging.info(f"Adding {len(new_dataset)} samples from WHU Stereo")
+        elif dataset_name == 'us3d':
+            new_dataset = US3D(aug_params)
+            logging.info(f"Adding {len(new_dataset)} samples from US3D")
         elif dataset_name == 'sintel_stereo':
             new_dataset = SintelStereo(aug_params)*140
             logging.info(f"Adding {len(new_dataset)} samples from Sintel Stereo")

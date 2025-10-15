@@ -234,10 +234,8 @@ def writeFlowKITTI(filename, uv):
 
 def read_gen(file_name, pil=False):
     ext = splitext(file_name)[-1].lower()
-    if ext in ['.png', '.jpeg', '.ppm', '.jpg']:
+    if ext in ['.png', '.jpeg', '.ppm', '.jpg', '.tiff', '.tif']:
         return Image.open(file_name)
-    elif ext in ['.tiff', '.tif']:
-        return np.array(Image.open(file_name))
     elif ext == '.bin' or ext == '.raw':
         return np.load(file_name)
     elif ext == '.flo':

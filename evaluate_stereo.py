@@ -339,7 +339,7 @@ def validate_driving(model, iters=32, mixed_prec=False):
 def validate_whu(model, iters=32, mixed_prec=False):
     """ Perform validation using the WHU stereo dataset """
     model.eval()
-    aug_params = {'crop_size': list([320, 736])}
+    aug_params = {}
     val_dataset = datasets.WHU(aug_params, image_set='validation')
     torch.backends.cudnn.benchmark = True
 

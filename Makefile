@@ -16,3 +16,5 @@ datasets_kitti_evaluate:
 	bash scripts/datasets_kitti_evaluate.sh
 datasets_whu_evaluate:
 	bash scripts/datasets_whu_evaluate.sh
+jupyter_notebook_gpu_run:
+	bash scripts/jupyter_notebook_gpu_run.sh

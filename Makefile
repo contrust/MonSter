@@ -16,6 +16,8 @@ datasets_kitti_evaluate:
 	bash scripts/datasets_kitti_evaluate.sh
 datasets_whu_evaluate:
 	bash scripts/datasets_whu_evaluate.sh
+datasets_us3d_train:
+	bash scripts/datasets_us3d_train.sh
 jupyter_notebook_gpu_run:
 	bash scripts/jupyter_notebook_gpu_run.sh
 tensorboard_us3d:

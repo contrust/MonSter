@@ -12,7 +12,7 @@ lr: 1e-4
 wdecay: 1e-5
 total_step: 50000
 image_visual_frequency: 25
-save_frequency: 375
+save_frequency: 3750
 save_path: ./checkpoints/us3d/
 val_frequency: 375
 image_size: [1024, 1024]

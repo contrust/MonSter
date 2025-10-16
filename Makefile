@@ -18,3 +18,5 @@ datasets_whu_evaluate:
 	bash scripts/datasets_whu_evaluate.sh
 jupyter_notebook_gpu_run:
 	bash scripts/jupyter_notebook_gpu_run.sh
+tensorboard_us3d:
+	tensorboard --logdir ./logs/us3d/

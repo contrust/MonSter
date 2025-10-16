@@ -1,22 +1,23 @@
 tensorboard: {}
-project_name: monster-stereo-training
+project_name: monster-stereo-training15
+project_dir: ./logs/us3d/
 restore_ckpt: "./checkpoints/mix_all.pth"
 # restore_ckpt: "/data2/cjd/mono_fusion/checkpoints/sceneflow.pth"
-logdir: './checkpoints/us3d/'
 encoder: 'vitl'
 batch_size: 8
-dataset: 'us3d'
+train_datasets: ['us3d']
 train_split_ratio: 0.7
 val_split_ratio: 0.15
 lr: 1e-4
 wdecay: 1e-5
 total_step: 50000
-save_frequency: 2000
+image_visual_frequency: 25
+save_frequency: 375
 save_path: ./checkpoints/us3d/
-val_frequency: 2000
+val_frequency: 375
 image_size: [1024, 1024]
 train_iters: 21
-valid_iters: 32
+valid_iters: 21
 corr_implementation: "reg"
 corr_levels: 2
 corr_radius: 4
@@ -28,5 +29,5 @@ saturation_range: [0.7, 1.3]
 do_flip: False
 spatial_scale: [-0.2, 0.5]
 noyjitter: True
-num_gpu: 4
+num_gpu: 8
 seed: 666

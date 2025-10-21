@@ -104,7 +104,7 @@ def main(cfg):
     logger = get_logger(__name__)
     Path(cfg.save_path).mkdir(exist_ok=True, parents=True)
     kwargs = DistributedDataParallelKwargs(find_unused_parameters=True)
-    accelerator = Accelerator(mixed_precision='fp16', dataloader_config=DataLoaderConfiguration(use_seedable_sampler=True), log_with='tensorboard', project_dir=cfg.project_dir, kwargs_handlers=[kwargs], step_scheduler_with_optimizer=False)
+    accelerator = Accelerator(mixed_precision=None, dataloader_config=DataLoaderConfiguration(use_seedable_sampler=True), log_with='tensorboard', project_dir=cfg.project_dir, kwargs_handlers=[kwargs], step_scheduler_with_optimizer=False)
        # Flatten config arrays into individual scalar hyperparameters for TensorBoard
     config_dict = OmegaConf.to_container(cfg, resolve=True)
     hparams_config = {}

@@ -9,6 +9,7 @@ data/
 models/
 datasets/
 logs/
+outputs/
 
 # Sensitive files
 credentials.json

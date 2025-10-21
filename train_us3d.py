@@ -92,9 +92,7 @@ def fetch_optimizer(args, model):
                    {'params': rest_params, 'lr': args.lr}, ]
     optimizer = optim.AdamW(params_dict, lr=args.lr, weight_decay=args.wdecay, eps=1e-8)
 
-    scheduler = optim.lr_scheduler.OneCycleLR(optimizer, [args.lr/2.0, args.lr], args.total_step+100,
-            pct_start=0.01, cycle_momentum=False, anneal_strategy='linear')
-
+    scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=args.total_step, eta_min=args.lr/100.0)
 
     return optimizer, scheduler
 

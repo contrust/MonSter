@@ -161,45 +161,46 @@ def main(cfg):
     while should_keep_training:
         active_train_loader = train_loader
 
-        if (total_step % cfg.val_frequency == 0):
-            model.eval()
-            elem_num, total_epe, total_out = 0, 0, 0
-            for data in tqdm(val_loader, dynamic_ncols=True, disable=not accelerator.is_main_process):
-                _, left, right, disp_gt, valid = [x for x in data]
-                padder = InputPadder(left.shape, divis_by=32)
-                left, right = padder.pad(left, right)
-                with torch.no_grad():
-                    with accelerator.autocast():
-                        disp_pred = model(left, right, iters=cfg.valid_iters, test_mode=True)
-                disp_pred = padder.unpad(disp_pred)
-                assert disp_pred.shape == disp_gt.shape, (disp_pred.shape, disp_gt.shape)
-                epe = torch.abs(disp_pred - disp_gt)
-                out = (epe > 1.0).float()
-                epe = torch.squeeze(epe, dim=1)
-                out = torch.squeeze(out, dim=1)
-                disp_gt = torch.squeeze(disp_gt, dim=1)
-                epe, out = accelerator.gather_for_metrics((epe[(valid >= 0.5) & (disp_gt.abs() < 192)].mean(), out[(valid >= 0.5) & (disp_gt.abs() < 192)].mean()))
-                elem_num += epe.shape[0]
-                for i in range(epe.shape[0]):
-                    total_epe += epe[i]
-                    total_out += out[i]
-                accelerator.log({'val/epe': total_epe / elem_num, 'val/d1': 100 * total_out / elem_num}, total_step)
-
-
         model.train()
         model.module.freeze_bn()
         for data in tqdm(active_train_loader, dynamic_ncols=True, disable=not accelerator.is_main_process):
+            if (total_step % cfg.val_frequency == 0):
+                model.eval()
+                elem_num, total_epe, total_out = 0, 0, 0
+                for data in tqdm(val_loader, dynamic_ncols=True, disable=not accelerator.is_main_process):
+                    _, left, right, disp_gt, valid = [x for x in data]
+                    padder = InputPadder(left.shape, divis_by=32)
+                    left, right = padder.pad(left, right)
+                    with torch.no_grad():
+                        with accelerator.autocast(): 
+                            disp_pred = model(left, right, iters=cfg.valid_iters, test_mode=True)
+                    disp_pred = padder.unpad(disp_pred)
+                    assert disp_pred.shape == disp_gt.shape, (disp_pred.shape, disp_gt.shape)
+                    epe = torch.abs(disp_pred - disp_gt)
+                    out = (epe > 1.0).float()
+                    epe = torch.squeeze(epe, dim=1)
+                    out = torch.squeeze(out, dim=1)
+                    disp_gt = torch.squeeze(disp_gt, dim=1)
+                    epe, out = accelerator.gather_for_metrics((epe[(valid >= 0.5) & (disp_gt.abs() < 192)].mean(), out[(valid >= 0.5) & (disp_gt.abs() < 192)].mean()))
+                    elem_num += epe.shape[0]
+                    for i in range(epe.shape[0]):
+                        total_epe += epe[i]
+                        total_out += out[i]
+                    accelerator.log({'val/epe': total_epe / elem_num, 'val/d1': 100 * total_out / elem_num}, total_step)
+
+            total_step += 1
             _, left, right, disp_gt, valid = [x for x in data]
-            with accelerator.autocast():
+            with accelerator.autocast(): 
                 disp_init_pred, disp_preds, depth_mono = model(left, right, iters=cfg.train_iters)
             loss, metrics = sequence_loss(disp_preds, disp_init_pred, disp_gt, valid, max_disp=cfg.max_disp)
+            if type(loss) == float:
+                continue
             accelerator.backward(loss)
             accelerator.clip_grad_norm_(model.parameters(), 1.0)
             optimizer.step()
             lr_scheduler.step()
             optimizer.zero_grad()
 
-            total_step += 1
             loss = accelerator.reduce(loss.detach(), reduction='mean')
             metrics = accelerator.reduce(metrics, reduction='mean')
             accelerator.log({'train/loss': loss, 'train/learning_rate': optimizer.param_groups[0]['lr']}, total_step)
@@ -245,10 +246,6 @@ def main(cfg):
                     print(f"Saved checkpoint to {save_path} successfully")
                 else:
                     print("No main process found for saving checkpoint")
-        
-
-                model.train()
-                model.module.freeze_bn()
 
             if total_step == cfg.total_step:
                 should_keep_training = False

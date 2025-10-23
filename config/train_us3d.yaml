@@ -1,5 +1,5 @@
 tensorboard: {}
-project_name: monster-stereo-training-positive-only
+project_name: monster-stereo-training-has-valid-pixels
 project_dir: ./logs/us3d/
 restore_ckpt: ./checkpoints/us3d/18750.pth
 encoder: 'vitl'

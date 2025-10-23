@@ -53,12 +53,12 @@ def sequence_loss(disp_preds, disp_init_pred, disp_gt, valid, loss_gamma=0.9, ma
 
     # quantile = torch.quantile((disp_init_pred - disp_gt).abs(), 0.9)
     init_valid = valid.bool() & torch.isfinite(disp_init_pred) & torch.isfinite(disp_gt) #  & ((disp_init_pred - disp_gt).abs() < quantile)
-    has_valid_pixels = False
+    has_valid_loss = False
     if init_valid.sum() == 0:
         print(f"Warning: no valid pixels for initial prediction loss calculation")
     else:
         disp_loss += 1.0 * F.smooth_l1_loss(disp_init_pred[init_valid], disp_gt[init_valid], reduction='mean')
-        has_valid_pixels = True
+        has_valid_loss = True
     for i in range(n_predictions):
         adjusted_loss_gamma = loss_gamma**(15/(n_predictions - 1))
         i_weight = adjusted_loss_gamma**(n_predictions - i - 1)
@@ -70,7 +70,11 @@ def sequence_loss(disp_preds, disp_init_pred, disp_gt, valid, loss_gamma=0.9, ma
             print(f"Warning: no valid pixels for prediction loss calculation at iteration {i}")
             continue
         disp_loss += i_weight * i_loss[mask].mean()
-        has_valid_pixels = True
+        has_valid_loss = True
+
+    if not has_valid_loss:
+        dummy_param = next(disp_preds[0].parameters())
+        disp_loss = 0.0 * dummy_param.sum()
 
     epe = torch.sum((disp_preds[-1] - disp_gt)**2, dim=1).sqrt()
     epe = epe.view(-1)[valid.view(-1)]
@@ -84,7 +88,7 @@ def sequence_loss(disp_preds, disp_init_pred, disp_gt, valid, loss_gamma=0.9, ma
         'train/3px': (epe < 3).float().mean(),
         'train/5px': (epe < 5).float().mean(),
     }
-    return disp_loss, metrics, has_valid_pixels
+    return disp_loss, metrics
 
 def fetch_optimizer(args, model):
     """ Create the optimizer and learning rate scheduler """
@@ -195,9 +199,7 @@ def main(cfg):
             _, left, right, disp_gt, valid = [x for x in data]
             with accelerator.autocast(): 
                 disp_init_pred, disp_preds, depth_mono = model(left, right, iters=cfg.train_iters)
-            loss, metrics, has_valid_pixels = sequence_loss(disp_preds, disp_init_pred, disp_gt, valid, max_disp=cfg.max_disp)
-            if not has_valid_pixels:
-                continue
+            loss, metrics = sequence_loss(disp_preds, disp_init_pred, disp_gt, valid, max_disp=cfg.max_disp)
             accelerator.backward(loss)
             accelerator.clip_grad_norm_(model.parameters(), 1.0)
             optimizer.step()

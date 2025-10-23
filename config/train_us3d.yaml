@@ -1,5 +1,5 @@
 tensorboard: {}
-project_name: monster-stereo-training-noise-aug
+project_name: monster-stereo-training-remove-v-flip
 project_dir: ./logs/us3d/
 restore_ckpt: ./checkpoints/us3d/18750.pth
 encoder: 'vitl'
@@ -27,7 +27,7 @@ n_gru_layers: 3
 hidden_dims: [128, 128, 128]
 max_disp: 128
 saturation_range: [0.9, 1.1]
-do_flip: 'hv'
+do_flip: 'h'
 spatial_scale: [-0.2, 0.5]
 noyjitter: True
 num_gpu: 8

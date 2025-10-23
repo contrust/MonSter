@@ -189,17 +189,19 @@ class SparseFlowAugmentor:
                  max_scale=0.5,
                  do_flip=False,
                  yjitter=False,
-                 brightness_range=0.3,
-                 contrast_range=0.3,
-                 saturation_range=[0.7,1.3],
-                 hue_range=0.3/3.14,
-                 gamma=[1,1,1,1],
+                 brightness_range=0.1,
+                 contrast_range=0.1,
+                 saturation_range=[0.9,1.1],
+                 hue_range=0.05/3.14,
+                 gamma=[0.8,1.2,1,1],
                  spatial_aug_prob=0.8,
                  stretch_prob=0.8,
                  max_stretch=0.2,
                  h_flip_prob=0.5,
                  v_flip_prob=0.5,
                  asymmetric_color_aug_prob=0.2,
+                 noise_aug_prob=0.3,
+                 noise_sigma_range=[0.1, 0.3],
                  eraser_aug_prob=0.0):
         # spatial augmentation params.
         self.crop_size = crop_size
@@ -213,6 +215,10 @@ class SparseFlowAugmentor:
         self.do_flip = do_flip
         self.h_flip_prob = h_flip_prob
         self.v_flip_prob = v_flip_prob
+
+        #noise augmentation params
+        self.noise_aug_prob = noise_aug_prob
+        self.noise_sigma_range = noise_sigma_range
 
         # photometric augmentation params
         self.photo_aug = Compose([ColorJitter(brightness=brightness_range, contrast=contrast_range, saturation=saturation_range, hue=hue_range), AdjustGamma(*gamma)])
@@ -326,9 +332,18 @@ class SparseFlowAugmentor:
         
         return img1, img2, flow, valid
 
+    def noise_transform(self, img1, img2):
+        if np.random.rand() < self.noise_aug_prob:
+            sigma = np.random.uniform(self.noise_sigma_range[0], self.noise_sigma_range[1])
+            noise = np.random.normal(0, sigma, img1.shape).astype(np.float32)
+            img1 = np.clip(img1 + noise, 0, 255)
+            img2 = np.clip(img2 + noise, 0, 255)
+        return img1, img2
+
 
     def __call__(self, img1, img2, flow, valid):
         img1, img2 = self.color_transform(img1, img2)
+        img1, img2 = self.noise_transform(img1, img2)
         #img1, img2 = self.eraser_transform(img1, img2)
         img1, img2, flow, valid = self.spatial_transform(img1, img2, flow, valid)
 

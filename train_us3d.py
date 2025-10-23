@@ -156,7 +156,7 @@ def main(cfg):
     train_loader, model, optimizer, lr_scheduler, val_loader = accelerator.prepare(train_loader, model, optimizer, lr_scheduler, val_loader)
     model.to(accelerator.device)
 
-    total_step = 0
+    total_step = cfg.current_step
     should_keep_training = True
     while should_keep_training:
         active_train_loader = train_loader

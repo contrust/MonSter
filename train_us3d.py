@@ -233,7 +233,7 @@ def main(cfg):
                 disp_init_pred, disp_preds, depth_mono = model(left, right, iters=cfg.train_iters)
             loss, metrics = sequence_loss(disp_preds, disp_init_pred, disp_gt, valid, max_disp=cfg.max_disp)
             accelerator.backward(loss)
-            accelerator.clip_grad_norm_(model.parameters(), 1.0)
+            accelerator.clip_grad_norm_(model.parameters(), 5.0)
             optimizer.step()
             lr_scheduler.step()
             optimizer.zero_grad()

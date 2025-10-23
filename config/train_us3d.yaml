@@ -1,13 +1,13 @@
 tensorboard: {}
-project_name: monster-stereo-training-aug-none-ckpt
+project_name: monster-stereo-training-aug-mix-all
 project_dir: ./logs/us3d/
-restore_ckpt: None
+restore_ckpt: ./checkpoints/mix_all.pth
 encoder: 'vitl'
 batch_size: 8
 train_datasets: ['us3d']
 train_split_ratio: 0.7
 val_split_ratio: 0.15
-lr: 5e-5
+lr: 3e-4
 wdecay: 1e-5
 current_step: 0
 total_step: 11220
@@ -27,7 +27,7 @@ n_gru_layers: 3
 hidden_dims: [128, 128, 128]
 max_disp: 128
 saturation_range: [0.9, 1.1]
-do_flip: 'h'
+do_flip: 'hf'
 spatial_scale: [-0.2, 0.5]
 noyjitter: True
 num_gpu: 8

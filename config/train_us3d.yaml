@@ -1,7 +1,7 @@
 tensorboard: {}
-project_name: monster-stereo-training-remove-v-flip
+project_name: monster-stereo-training-aug-none-ckpt
 project_dir: ./logs/us3d/
-restore_ckpt: ./checkpoints/us3d/18750.pth
+restore_ckpt: None
 encoder: 'vitl'
 batch_size: 8
 train_datasets: ['us3d']
@@ -31,4 +31,4 @@ do_flip: 'h'
 spatial_scale: [-0.2, 0.5]
 noyjitter: True
 num_gpu: 8
-seed: 888
+seed: 999

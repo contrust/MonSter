@@ -1,5 +1,5 @@
 tensorboard: {}
-project_name: monster-stereo-training-dummy-param
+project_name: monster-stereo-training-h-flip-valid-fix
 project_dir: ./logs/us3d/
 restore_ckpt: ./checkpoints/us3d/18750.pth
 encoder: 'vitl'
@@ -7,7 +7,7 @@ batch_size: 8
 train_datasets: ['us3d']
 train_split_ratio: 0.7
 val_split_ratio: 0.15
-lr: 1e-4
+lr: 3e-5
 wdecay: 1e-5
 current_step: 0
 total_step: 11220
@@ -30,4 +30,4 @@ do_flip: 'hv'
 spatial_scale: [-0.2, 0.5]
 noyjitter: True
 num_gpu: 8
-seed: 666
+seed: 777

@@ -443,7 +443,7 @@ class WHU(StereoDataset):
 def fetch_dataloader(args):
     """ Create the data loader for the corresponding trainign set """
     # print('args.img_gamma', args.img_gamma)
-    aug_params = {'crop_size': list(args.image_size), 'min_scale': args.spatial_scale[0], 'max_scale': args.spatial_scale[1], 'do_flip': False, 'yjitter': not args.noyjitter}
+    aug_params = {'crop_size': list(args.image_size), 'min_scale': args.spatial_scale[0], 'max_scale': args.spatial_scale[1], 'do_flip': args.do_flip, 'yjitter': not args.noyjitter}
     if hasattr(args, "saturation_range") and args.saturation_range is not None:
         aug_params["saturation_range"] = list(args.saturation_range)
     if hasattr(args, "img_gamma") and args.img_gamma is not None:

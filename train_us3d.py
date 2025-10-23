@@ -73,8 +73,7 @@ def sequence_loss(disp_preds, disp_init_pred, disp_gt, valid, loss_gamma=0.9, ma
         has_valid_loss = True
 
     if not has_valid_loss:
-        dummy_param = next(disp_preds[0].parameters())
-        disp_loss = 0.0 * dummy_param.sum()
+        disp_loss = 0.0 * disp_preds[0].sum()
 
     epe = torch.sum((disp_preds[-1] - disp_gt)**2, dim=1).sqrt()
     epe = epe.view(-1)[valid.view(-1)]

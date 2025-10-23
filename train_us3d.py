@@ -194,39 +194,37 @@ def main(cfg):
                     for i in range(epe.shape[0]):
                         total_epe += epe[i]
                         total_out += out[i]
-
-
-                ####visualize the depth_mono and disp_preds
-                if total_step % cfg.val_image_frequency == 0 and accelerator.is_main_process:
-                    image1_np = left[0].squeeze().cpu().numpy()
-                    image1_np = (image1_np - image1_np.min()) / (image1_np.max() - image1_np.min()) * 255.0
-                    image1_np = image1_np.astype(np.uint8)
-                    image1_np = np.transpose(image1_np, (1, 2, 0))
-
-                    image2_np = right[0].squeeze().cpu().numpy()
-                    image2_np = (image2_np - image2_np.min()) / (image2_np.max() - image2_np.min()) * 255.0
-                    image2_np = image2_np.astype(np.uint8)
-                    image2_np = np.transpose(image2_np, (1, 2, 0))
-
-
-                    depth_mono_np = gray_2_colormap_np(depth_mono[0].squeeze())
-                    disp_preds_np = gray_2_colormap_np(disp_preds[-1][0].squeeze())
-                    disp_gt_np = gray_2_colormap_np(disp_gt[0].squeeze())
-                    
-                    tracker = accelerator.get_tracker('tensorboard')
-                    if tracker is not None:
-                        writer = tracker.writer
-                        if writer is not None:
-                            # Convert numpy arrays to tensors and transpose for tensorboard (HWC -> CHW)
-                            writer.add_image('val/disp_pred', np.transpose(disp_preds_np, (2, 0, 1)), val_step, dataformats='CHW')
-                            writer.add_image('val/disp_gt', np.transpose(disp_gt_np, (2, 0, 1)), val_step, dataformats='CHW')
-                            writer.add_image('val/depth_mono', np.transpose(depth_mono_np, (2, 0, 1)), val_step, dataformats='CHW')
-                        else:
-                            print("No tensorboard writer found")
-                    else:
-                        print("No tensorboard tracker found")
-
                     val_step += 1
+
+
+                    ####visualize the depth_mono and disp_preds
+                    if total_step % cfg.val_image_frequency == 0 and accelerator.is_main_process:
+                        image1_np = left[0].squeeze().cpu().numpy()
+                        image1_np = (image1_np - image1_np.min()) / (image1_np.max() - image1_np.min()) * 255.0
+                        image1_np = image1_np.astype(np.uint8)
+                        image1_np = np.transpose(image1_np, (1, 2, 0))
+
+                        image2_np = right[0].squeeze().cpu().numpy()
+                        image2_np = (image2_np - image2_np.min()) / (image2_np.max() - image2_np.min()) * 255.0
+                        image2_np = image2_np.astype(np.uint8)
+                        image2_np = np.transpose(image2_np, (1, 2, 0))
+
+
+                        disp_preds_np = gray_2_colormap_np(disp_pred[0].squeeze())
+                        disp_gt_np = gray_2_colormap_np(disp_gt[0].squeeze())
+                        
+                        tracker = accelerator.get_tracker('tensorboard')
+                        if tracker is not None:
+                            writer = tracker.writer
+                            if writer is not None:
+                                # Convert numpy arrays to tensors and transpose for tensorboard (HWC -> CHW)
+                                writer.add_image('val/disp_pred', np.transpose(disp_preds_np, (2, 0, 1)), val_step, dataformats='CHW')
+                                writer.add_image('val/disp_gt', np.transpose(disp_gt_np, (2, 0, 1)), val_step, dataformats='CHW')
+                            else:
+                                print("No tensorboard writer found")
+                        else:
+                            print("No tensorboard tracker found")
+
                 accelerator.log({'val/epe': total_epe / elem_num, 'val/d1': 100 * total_out / elem_num}, total_step)
 
             total_step += 1

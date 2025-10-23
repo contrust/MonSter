@@ -45,7 +45,7 @@ def sequence_loss(disp_preds, disp_init_pred, disp_gt, valid, loss_gamma=0.9, ma
 
     n_predictions = len(disp_preds)
     assert n_predictions >= 1
-    disp_loss = torch.tensor(0.0, requires_grad=True).to(disp_gt.device)
+    disp_loss = 0.0
     mag = torch.sum(disp_gt**2, dim=1).sqrt()
     valid = ((valid >= 0.5) & (mag < max_disp)).unsqueeze(1)
     assert valid.shape == disp_gt.shape, [valid.shape, disp_gt.shape]
@@ -53,10 +53,12 @@ def sequence_loss(disp_preds, disp_init_pred, disp_gt, valid, loss_gamma=0.9, ma
 
     # quantile = torch.quantile((disp_init_pred - disp_gt).abs(), 0.9)
     init_valid = valid.bool() & torch.isfinite(disp_init_pred) & torch.isfinite(disp_gt) #  & ((disp_init_pred - disp_gt).abs() < quantile)
+    has_valid_pixels = False
     if init_valid.sum() == 0:
         print(f"Warning: no valid pixels for initial prediction loss calculation")
     else:
         disp_loss += 1.0 * F.smooth_l1_loss(disp_init_pred[init_valid], disp_gt[init_valid], reduction='mean')
+        has_valid_pixels = True
     for i in range(n_predictions):
         adjusted_loss_gamma = loss_gamma**(15/(n_predictions - 1))
         i_weight = adjusted_loss_gamma**(n_predictions - i - 1)
@@ -68,6 +70,7 @@ def sequence_loss(disp_preds, disp_init_pred, disp_gt, valid, loss_gamma=0.9, ma
             print(f"Warning: no valid pixels for prediction loss calculation at iteration {i}")
             continue
         disp_loss += i_weight * i_loss[mask].mean()
+        has_valid_pixels = True
 
     epe = torch.sum((disp_preds[-1] - disp_gt)**2, dim=1).sqrt()
     epe = epe.view(-1)[valid.view(-1)]
@@ -81,7 +84,7 @@ def sequence_loss(disp_preds, disp_init_pred, disp_gt, valid, loss_gamma=0.9, ma
         'train/3px': (epe < 3).float().mean(),
         'train/5px': (epe < 5).float().mean(),
     }
-    return disp_loss, metrics
+    return disp_loss, metrics, has_valid_pixels
 
 def fetch_optimizer(args, model):
     """ Create the optimizer and learning rate scheduler """
@@ -192,8 +195,8 @@ def main(cfg):
             _, left, right, disp_gt, valid = [x for x in data]
             with accelerator.autocast(): 
                 disp_init_pred, disp_preds, depth_mono = model(left, right, iters=cfg.train_iters)
-            loss, metrics = sequence_loss(disp_preds, disp_init_pred, disp_gt, valid, max_disp=cfg.max_disp)
-            if type(loss) == float:
+            loss, metrics, has_valid_pixels = sequence_loss(disp_preds, disp_init_pred, disp_gt, valid, max_disp=cfg.max_disp)
+            if not has_valid_pixels:
                 continue
             accelerator.backward(loss)
             accelerator.clip_grad_norm_(model.parameters(), 1.0)

@@ -1,5 +1,5 @@
 tensorboard: {}
-project_name: monster-stereo-training-h-flip-valid-fix
+project_name: monster-stereo-training-lr-decrease
 project_dir: ./logs/us3d/
 restore_ckpt: ./checkpoints/us3d/18750.pth
 encoder: 'vitl'
@@ -7,7 +7,7 @@ batch_size: 8
 train_datasets: ['us3d']
 train_split_ratio: 0.7
 val_split_ratio: 0.15
-lr: 3e-5
+lr: 1e-5
 wdecay: 1e-5
 current_step: 0
 total_step: 11220
@@ -15,7 +15,7 @@ image_visual_frequency: 25
 save_frequency: 3740
 save_path: ./checkpoints/us3d/
 val_frequency: 187
-image_size: [256, 1024]
+image_size: [512, 1024]
 train_iters: 24
 valid_iters: 24
 corr_implementation: "reg"

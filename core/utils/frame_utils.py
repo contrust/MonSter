@@ -182,7 +182,7 @@ def readDispFallingThings(file_name):
 
 def readDispUS3D(file_name):
     disp = np.array(Image.open(file_name), dtype=np.float32)
-    valid = disp != US3D_INVALID_DISPARITY_VALUE
+    valid = disp >= 0
     return disp, valid
 
 # Method taken from https://github.com/castacks/tartanair_tools/blob/master/data_type.md

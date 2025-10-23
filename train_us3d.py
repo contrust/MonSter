@@ -198,7 +198,7 @@ def main(cfg):
 
 
                     ####visualize the depth_mono and disp_preds
-                    if total_step % cfg.val_image_frequency == 0 and accelerator.is_main_process:
+                    if val_step % cfg.val_image_frequency == 0 and accelerator.is_main_process:
                         image1_np = left[0].squeeze().cpu().numpy()
                         image1_np = (image1_np - image1_np.min()) / (image1_np.max() - image1_np.min()) * 255.0
                         image1_np = image1_np.astype(np.uint8)

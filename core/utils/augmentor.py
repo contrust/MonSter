@@ -298,6 +298,7 @@ class SparseFlowAugmentor:
                 img1 = img2
                 img2 = tmp
                 flow = flow[:, ::-1]
+                valid = valid[:, ::-1]
 
             if 'v' in self.do_flip and np.random.rand() < self.v_flip_prob: # v-flip
                 img1 = img1[::-1, :]
@@ -328,7 +329,7 @@ class SparseFlowAugmentor:
 
     def __call__(self, img1, img2, flow, valid):
         img1, img2 = self.color_transform(img1, img2)
-        img1, img2 = self.eraser_transform(img1, img2)
+        #img1, img2 = self.eraser_transform(img1, img2)
         img1, img2, flow, valid = self.spatial_transform(img1, img2, flow, valid)
 
         img1 = np.ascontiguousarray(img1)

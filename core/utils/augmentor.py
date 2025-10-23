@@ -199,7 +199,6 @@ class SparseFlowAugmentor:
                  max_stretch=0.2,
                  h_flip_prob=0.5,
                  v_flip_prob=0.5,
-                 s_flip_prob=0.5,
                  asymmetric_color_aug_prob=0.2,
                  eraser_aug_prob=0.0):
         # spatial augmentation params.
@@ -214,7 +213,6 @@ class SparseFlowAugmentor:
         self.do_flip = do_flip
         self.h_flip_prob = h_flip_prob
         self.v_flip_prob = v_flip_prob
-        self.s_flip_prob = s_flip_prob
 
         # photometric augmentation params
         self.photo_aug = Compose([ColorJitter(brightness=brightness_range, contrast=contrast_range, saturation=saturation_range, hue=hue_range), AdjustGamma(*gamma)])
@@ -296,15 +294,10 @@ class SparseFlowAugmentor:
             if 'h' in self.do_flip and np.random.rand() < self.h_flip_prob: # h-flip
                 img1 = img1[:, ::-1]
                 img2 = img2[:, ::-1]
-                flow = flow[:, ::-1] * [-1.0, 1.0]
-                valid = valid[:, ::-1]
-
-            if 's' in self.do_flip and np.random.rand() < self.s_flip_prob: # swap
                 tmp = img1
                 img1 = img2
                 img2 = tmp
-                flow = flow * [-1.0, 1.0]
-                valid = valid[:, ::-1]
+                flow = flow[:, ::-1]
 
             if 'v' in self.do_flip and np.random.rand() < self.v_flip_prob: # v-flip
                 img1 = img1[::-1, :]

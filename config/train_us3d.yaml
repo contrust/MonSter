@@ -1,5 +1,5 @@
 tensorboard: {}
-project_name: monster-stereo-training-aug-vitg-none-ckpt-fix
+project_name: monster-stereo-training-aug-vitg-none-ckpt-freeze-bn
 project_dir: ./logs/us3d/
 restore_ckpt: None
 encoder: 'vitg'
@@ -27,7 +27,7 @@ n_gru_layers: 3
 hidden_dims: [128, 128, 128]
 max_disp: 128
 saturation_range: [0.9, 1.1]
-do_flip: ''
+do_flip: 'h'
 spatial_scale: [-0.2, 0.5]
 noyjitter: True
 num_gpu: 8

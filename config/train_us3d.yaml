@@ -1,5 +1,5 @@
 tensorboard: {}
-project_name: monster-stereo-training-aug-mix-all-loss-lr
+project_name: monster-stereo-training-aug-mix-all-no-quantile
 project_dir: ./logs/us3d/
 restore_ckpt: ./checkpoints/us3d/11220.pth
 encoder: 'vitl'
@@ -7,7 +7,7 @@ batch_size: 8
 train_datasets: ['us3d']
 train_split_ratio: 0.7
 val_split_ratio: 0.15
-lr: 3e-4
+lr: 3e-5
 wdecay: 1e-5
 current_step: 11220
 total_step: 26180

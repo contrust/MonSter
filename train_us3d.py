@@ -172,7 +172,7 @@ def main(cfg):
         model.train()
         #model.module.freeze_bn()
         for data in tqdm(active_train_loader, dynamic_ncols=True, disable=not accelerator.is_main_process):
-            if (total_step % cfg.val_frequency == 1000):
+            if (total_step % cfg.val_frequency == 0):
                 model.eval()
                 elem_num, total_epe, total_out = 0, 0, 0
                 for data in tqdm(val_loader, dynamic_ncols=True, disable=not accelerator.is_main_process):

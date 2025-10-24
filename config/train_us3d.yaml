@@ -1,7 +1,7 @@
 tensorboard: {}
-project_name: monster-stereo-training-aug-mix-all-2
+project_name: monster-stereo-training-aug-mix-all-loss-change
 project_dir: ./logs/us3d/
-restore_ckpt: ./checkpoints/11220.pth
+restore_ckpt: ./checkpoints/us3d/11220.pth
 encoder: 'vitl'
 batch_size: 8
 train_datasets: ['us3d']

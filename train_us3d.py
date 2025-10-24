@@ -58,9 +58,9 @@ def sequence_loss(disp_preds, disp_init_pred, disp_gt, valid, loss_gamma=0.9, ma
     
     if init_valid.sum() > 0:
         # Optional: filter top 10% errors if you have outliers
-        init_error = (disp_init_pred - disp_gt).abs()
-        quantile = torch.quantile(init_error[init_valid], 0.9)
-        init_valid = init_valid & (init_error < quantile)
+        #init_error = (disp_init_pred - disp_gt).abs()
+        #quantile = torch.quantile(init_error[init_valid], 0.9)
+        #init_valid = init_valid & (init_error < quantile)
         
         disp_loss += 1.0 * F.smooth_l1_loss(disp_init_pred[init_valid], disp_gt[init_valid])
         has_valid_loss = True

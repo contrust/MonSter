@@ -1,22 +1,22 @@
 tensorboard: {}
-project_name: monster-stereo-training-aug-22500-vitg
+project_name: monster-stereo-training-aug-vitg-none-ckpt-fix
 project_dir: ./logs/us3d/
-restore_ckpt: ./checkpoints/us3d/monster-stereo-training-aug-mix-all-no-quantile_22500.pth
-encoder: 'vitl'
+restore_ckpt: None
+encoder: 'vitg'
 batch_size: 8
 train_datasets: ['us3d']
 train_split_ratio: 0.7
 val_split_ratio: 0.15
-lr: 1e-4
+lr: 2e-4
 wdecay: 1e-5
-current_step: 22500
-total_step: 30000
+current_step: 0
+total_step: 11250
 train_image_frequency: 25
 val_image_frequency: 25
 save_frequency: 3750
 save_path: ./checkpoints/us3d/
 val_frequency: 375
-image_size: [512, 1024]
+image_size: [256, 1024]
 train_iters: 24
 valid_iters: 24
 corr_implementation: "reg"

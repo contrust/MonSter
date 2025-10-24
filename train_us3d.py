@@ -170,7 +170,7 @@ def main(cfg):
         active_train_loader = train_loader
 
         model.train()
-        #model.module.freeze_bn()
+        model.module.freeze_bn()
         for data in tqdm(active_train_loader, dynamic_ncols=True, disable=not accelerator.is_main_process):
             if (total_step % cfg.val_frequency == 0):
                 model.eval()
@@ -226,6 +226,8 @@ def main(cfg):
                             print("No tensorboard tracker found")
 
                 accelerator.log({'val/epe': total_epe / elem_num, 'val/d1': 100 * total_out / elem_num}, total_step)
+                model.train()
+                model.module.freeze_bn()
 
             total_step += 1
             _, left, right, disp_gt, valid = [x for x in data]

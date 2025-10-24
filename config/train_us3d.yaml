@@ -1,5 +1,5 @@
 tensorboard: {}
-project_name: monster-stereo-training-aug-mix-all-fix-loss
+project_name: monster-stereo-training-aug-mix-all-loss-lr
 project_dir: ./logs/us3d/
 restore_ckpt: ./checkpoints/us3d/11220.pth
 encoder: 'vitl'
@@ -7,15 +7,15 @@ batch_size: 8
 train_datasets: ['us3d']
 train_split_ratio: 0.7
 val_split_ratio: 0.15
-lr: 1e-4
+lr: 3e-4
 wdecay: 1e-5
 current_step: 11220
 total_step: 26180
 train_image_frequency: 25
 val_image_frequency: 25
-save_frequency: 3740
+save_frequency: 3750
 save_path: ./checkpoints/us3d/
-val_frequency: 187
+val_frequency: 375
 image_size: [512, 1024]
 train_iters: 24
 valid_iters: 24

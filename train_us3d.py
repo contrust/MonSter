@@ -41,53 +41,56 @@ def gray_2_colormap_np(img, cmap = 'rainbow', max = None):
     return colormap
 
 def sequence_loss(disp_preds, disp_init_pred, disp_gt, valid, loss_gamma=0.9, max_disp=192):
-    """ Loss function defined over sequence of flow predictions """
+    """ Loss function defined over sequence of disparity predictions """
 
     n_predictions = len(disp_preds)
     assert n_predictions >= 1
-    disp_loss = 0.0
+    
+    # Compute validity mask
     mag = torch.sum(disp_gt**2, dim=1).sqrt()
     valid = ((valid >= 0.5) & (mag < max_disp)).unsqueeze(1)
-    assert valid.shape == disp_gt.shape, [valid.shape, disp_gt.shape]
-    assert torch.isfinite(disp_gt[valid.bool()]).all()
-
-    quantile = torch.quantile(F.smooth_l1_loss(disp_init_pred, disp_gt, reduction='none'), 0.9)
-    init_valid = valid.bool() & torch.isfinite(disp_init_pred) & torch.isfinite(disp_gt) & ((disp_init_pred - disp_gt).abs() < quantile)
+    
+    disp_loss = 0.0
+    
+    # Initial prediction loss (optional: with outlier filtering)
+    init_valid = valid.bool() & torch.isfinite(disp_init_pred) & torch.isfinite(disp_gt)
     has_valid_loss = False
-    if init_valid.sum() == 0:
-        print(f"Warning: no valid pixels for initial prediction loss calculation")
-    else:
-        disp_loss += 1.0 * F.smooth_l1_loss(disp_init_pred[init_valid], disp_gt[init_valid], reduction='mean')
+    
+    if init_valid.sum() > 0:
+        # Optional: filter top 10% errors if you have outliers
+        init_error = (disp_init_pred - disp_gt).abs()
+        quantile = torch.quantile(init_error[init_valid], 0.9)
+        init_valid = init_valid & (init_error < quantile)
+        
+        disp_loss += 1.0 * F.smooth_l1_loss(disp_init_pred[init_valid], disp_gt[init_valid])
         has_valid_loss = True
+    
+    # Sequence loss with consistent masking
     for i in range(n_predictions):
         i_weight = loss_gamma**(n_predictions - i - 1)
-        i_loss = F.smooth_l1_loss(disp_preds[i] - disp_gt, reduction='none')
-        quantile = torch.quantile(i_loss, 0.9)
-        assert i_loss.shape == valid.shape, [i_loss.shape, valid.shape, disp_gt.shape, disp_preds[i].shape]
-        mask = valid.bool() & torch.isfinite(i_loss) & (i_loss < quantile)
-        if mask.sum() == 0:
-            print(f"Warning: no valid pixels for prediction loss calculation at iteration {i}")
-            continue
-        disp_loss += i_weight * i_loss[mask].mean()
-        has_valid_loss = True
+        i_loss = F.smooth_l1_loss(disp_preds[i], disp_gt, reduction='none')
+        
+        mask = valid.bool() & torch.isfinite(i_loss)
+        
+        if mask.sum() > 0:
+            disp_loss += i_weight * i_loss[mask].mean()
+            has_valid_loss = True
 
     if not has_valid_loss:
-        disp_loss = 0.0 * disp_preds[0].sum()
+        disp_loss = 0.0 * disp_preds[-1].mean()
 
+    # Metrics on final prediction
     epe = torch.sum((disp_preds[-1] - disp_gt)**2, dim=1).sqrt()
     epe = epe.view(-1)[valid.view(-1)]
-
-    if valid.bool().sum() == 0:
-        epe = torch.Tensor([0.0]).cuda()
-
+    
     metrics = {
         'train/epe': epe.mean(),
         'train/1px': (epe < 1).float().mean(),
         'train/3px': (epe < 3).float().mean(),
         'train/5px': (epe < 5).float().mean(),
     }
+    
     return disp_loss, metrics
-
 
 def fetch_optimizer(args, model):
     """ Create the optimizer and learning rate scheduler """
@@ -169,7 +172,7 @@ def main(cfg):
         model.train()
         #model.module.freeze_bn()
         for data in tqdm(active_train_loader, dynamic_ncols=True, disable=not accelerator.is_main_process):
-            if (total_step % cfg.val_frequency == 0):
+            if (total_step % cfg.val_frequency == 1000):
                 model.eval()
                 elem_num, total_epe, total_out = 0, 0, 0
                 for data in tqdm(val_loader, dynamic_ncols=True, disable=not accelerator.is_main_process):

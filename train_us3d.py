@@ -51,8 +51,8 @@ def sequence_loss(disp_preds, disp_init_pred, disp_gt, valid, loss_gamma=0.9, ma
     assert valid.shape == disp_gt.shape, [valid.shape, disp_gt.shape]
     assert torch.isfinite(disp_gt[valid.bool()]).all()
 
-    # quantile = torch.quantile((disp_init_pred - disp_gt).abs(), 0.9)
-    init_valid = valid.bool() & torch.isfinite(disp_init_pred) & torch.isfinite(disp_gt) #  & ((disp_init_pred - disp_gt).abs() < quantile)
+    quantile = torch.quantile(F.smooth_l1_loss(disp_init_pred, disp_gt, reduction='none'), 0.9)
+    init_valid = valid.bool() & torch.isfinite(disp_init_pred) & torch.isfinite(disp_gt) & ((disp_init_pred - disp_gt).abs() < quantile)
     has_valid_loss = False
     if init_valid.sum() == 0:
         print(f"Warning: no valid pixels for initial prediction loss calculation")
@@ -60,12 +60,11 @@ def sequence_loss(disp_preds, disp_init_pred, disp_gt, valid, loss_gamma=0.9, ma
         disp_loss += 1.0 * F.smooth_l1_loss(disp_init_pred[init_valid], disp_gt[init_valid], reduction='mean')
         has_valid_loss = True
     for i in range(n_predictions):
-        adjusted_loss_gamma = loss_gamma**(15/(n_predictions - 1))
-        i_weight = adjusted_loss_gamma**(n_predictions - i - 1)
-        i_loss = (disp_preds[i] - disp_gt).abs()
-        # quantile = torch.quantile(i_loss, 0.9)
+        i_weight = loss_gamma**(n_predictions - i - 1)
+        i_loss = F.smooth_l1_loss(disp_preds[i] - disp_gt, reduction='none')
+        quantile = torch.quantile(i_loss, 0.9)
         assert i_loss.shape == valid.shape, [i_loss.shape, valid.shape, disp_gt.shape, disp_preds[i].shape]
-        mask = valid.bool() & torch.isfinite(i_loss)
+        mask = valid.bool() & torch.isfinite(i_loss) & (i_loss < quantile)
         if mask.sum() == 0:
             print(f"Warning: no valid pixels for prediction loss calculation at iteration {i}")
             continue

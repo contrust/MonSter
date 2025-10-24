@@ -1,5 +1,5 @@
 tensorboard: {}
-project_name: monster-stereo-training-aug-vitg-none-ckpt-freeze-bn
+project_name: monster-stereo-training-aug-vitg-none-ckpt-no-freeze-bn
 project_dir: ./logs/us3d/
 restore_ckpt: None
 encoder: 'vitg'

@@ -275,7 +275,7 @@ def main(cfg):
 
             if (total_step > 0) and (total_step % cfg.save_frequency == 0):
                 if accelerator.is_main_process:
-                    save_path = Path(cfg.save_path + '/%d.pth' % (total_step))
+                    save_path = Path(cfg.save_path + f"/{cfg.project_name}_%d.pth" % (total_step))
                     print(f"Saving checkpoint to {save_path}")
                     model_save = accelerator.unwrap_model(model)
                     torch.save(model_save.state_dict(), save_path)
@@ -289,7 +289,7 @@ def main(cfg):
                 break
 
     if accelerator.is_main_process:
-        save_path = Path(cfg.save_path + '/final.pth')
+        save_path = Path(cfg.save_path + f"/{cfg.project_name}_final.pth")
         model_save = accelerator.unwrap_model(model)
         torch.save(model_save.state_dict(), save_path)
         del model_save

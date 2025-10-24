@@ -142,8 +142,6 @@ def main(cfg):
     val_loader = torch.utils.data.DataLoader(val_dataset, batch_size=cfg.batch_size//cfg.num_gpu,
         pin_memory=True, shuffle=False, num_workers=1, drop_last=False)
 
-    aug_params = {}
-
     model = Monster(cfg)
     if not cfg.restore_ckpt.endswith("None"):
         assert cfg.restore_ckpt.endswith(".pth")

@@ -1,5 +1,5 @@
 tensorboard: {}
-project_name: monster-stereo-training-mix-all-no-aug
+project_name: monster-us3d-mix-all-no-aug
 project_dir: ./logs/us3d/
 restore_ckpt: ./checkpoints/mix_all.pth
 encoder: 'vitl'

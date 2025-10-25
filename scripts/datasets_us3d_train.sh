@@ -7,7 +7,7 @@ sbatch -n1 \
 --cpus-per-task=10 \
 --mem=100000 \
 $SBATCH_CPU \
--t 12:00:00 \
+-t 20:00:00 \
 --job-name=monster_us3d_train \
 --output=./logs/monster_datasets_us3d_train_%j.log \
 --error=./logs/monster_datasets_us3d_train_%j.err \

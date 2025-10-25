@@ -1,8 +1,8 @@
 tensorboard: {}
-project_name: monster-stereo-training-aug-vitg-none-ckpt-no-freeze-bn
+project_name: monster-stereo-training-mix-all-no-aug
 project_dir: ./logs/us3d/
-restore_ckpt: None
-encoder: 'vitg'
+restore_ckpt: ./checkpoints/mix_all.pth
+encoder: 'vitl'
 batch_size: 8
 train_datasets: ['us3d']
 train_split_ratio: 0.7
@@ -10,13 +10,13 @@ val_split_ratio: 0.15
 lr: 2e-4
 wdecay: 1e-5
 current_step: 0
-total_step: 11250
+total_step: 23000
 train_image_frequency: 25
 val_image_frequency: 25
 save_frequency: 3750
 save_path: ./checkpoints/us3d/
 val_frequency: 375
-image_size: [256, 1024]
+image_size: [512, 1024]
 train_iters: 24
 valid_iters: 24
 corr_implementation: "reg"
@@ -26,9 +26,9 @@ n_downsample: 2
 n_gru_layers: 3
 hidden_dims: [128, 128, 128]
 max_disp: 128
-saturation_range: [0.9, 1.1]
-do_flip: 'h'
-spatial_scale: [-0.2, 0.5]
+saturation_range: [1.0, 1.0]
+do_flip: ''
+spatial_scale: [-0.2, 0.0]
 noyjitter: True
 num_gpu: 8
 seed: 999

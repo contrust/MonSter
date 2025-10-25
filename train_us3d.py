@@ -101,7 +101,7 @@ def fetch_optimizer(args, model):
                    {'params': rest_params, 'lr': args.lr}, ]
     optimizer = optim.AdamW(params_dict, lr=args.lr, weight_decay=args.wdecay, eps=1e-8)
 
-    scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=1000, gamma=0.9)
+    scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=1000, gamma=0.91)
 
     return optimizer, scheduler
 
